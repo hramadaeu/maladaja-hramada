@@ -1,0 +1,88 @@
+/**
+ * Brand & semantic colors — derived from brand assets (logo.svg, wordmarks):
+ * - brand red     → #e51b3d
+ * - brand charcoal → #1e1e1c
+ * - brand white   → #ffffff
+ */
+:root {
+  /* Brand palette */
+  --brand-red: #e51b3d;
+  --brand-red-soft: #f9d4db;
+  --brand-charcoal: #1e1e1c;
+  --brand-white: #ffffff;
+
+  --brand: var(--brand-red);
+  --brand-foreground: var(--brand-white);
+  --brand-muted: color-mix(in oklch, var(--brand-red) 14%, transparent);
+  --brand-subtle: color-mix(in oklch, var(--brand-red) 6%, white);
+
+  /* Surfaces */
+  --background: oklch(0.995 0.002 17);
+  --foreground: oklch(0.22 0.006 110);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  /* Semantic */
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  --secondary: oklch(0.97 0.008 17);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.97 0.006 17);
+  --muted-foreground: oklch(0.5 0.02 17);
+  --accent: var(--brand-subtle);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.55 0.22 17);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.92 0.012 17);
+  --input: oklch(0.92 0.012 17);
+  --ring: color-mix(in oklch, var(--brand-red) 40%, transparent);
+
+  --chart-1: var(--brand-red);
+  --chart-2: oklch(0.55 0.12 17);
+  --chart-3: oklch(0.45 0.08 17);
+  --chart-4: oklch(0.35 0.05 17);
+  --chart-5: var(--brand-charcoal);
+
+  --radius: 0.625rem;
+
+  /* Sidebar (admin) */
+  --sidebar: oklch(0.985 0.004 17);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--brand-foreground);
+  --sidebar-accent: var(--brand-subtle);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+.dark {
+  --background: oklch(0.18 0.008 110);
+  --foreground: oklch(0.97 0.004 17);
+  --card: oklch(0.22 0.01 110);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.22 0.01 110);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.62 0.2 17);
+  --primary-foreground: oklch(0.15 0.01 110);
+  --secondary: oklch(0.28 0.01 110);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.28 0.01 110);
+  --muted-foreground: oklch(0.72 0.02 17);
+  --accent: oklch(0.28 0.03 17);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.65 0.18 17);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: color-mix(in oklch, var(--brand-red) 50%, transparent);
+  --sidebar: oklch(0.2 0.01 110);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: oklch(0.62 0.2 17);
+  --sidebar-primary-foreground: oklch(0.15 0.01 110);
+  --sidebar-accent: oklch(0.28 0.03 17);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: var(--ring);
+}
