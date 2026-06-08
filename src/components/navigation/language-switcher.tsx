@@ -33,10 +33,10 @@ export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
           key={locale}
           href={getPathForLocale(locale)}
           className={cn(
-            "rounded-md px-2 py-1.5 text-xs font-medium transition-colors",
+            "rounded-md px-2.5 py-1 font-button text-button uppercase transition-all duration-100 active:translate-x-0.5 active:translate-y-0.5",
             currentLang === locale
-              ? "bg-muted text-foreground"
-              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              ? "bg-concrete-gray text-proletarian-red"
+              : "text-ink-black hover:text-proletarian-red hover:bg-concrete-gray"
           )}
           title={languageNames[locale]}
         >

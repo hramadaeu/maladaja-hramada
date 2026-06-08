@@ -1,4 +1,4 @@
-import { isValidLocale } from "@/config/i18n";
+﻿import { isValidLocale } from "@/config/i18n";
 import { PolicyPageShell } from "@/components/policy/policy-page-shell";
 import { PolicyProse } from "@/components/policy/policy-prose";
 import {
@@ -30,14 +30,14 @@ export default async function LgbtqCivilPartnershipPage({ params }: PageProps) {
     >
       <div className="flex flex-col gap-12">
         <section>
-          <h2 className="text-xl font-semibold tracking-tight text-foreground">
+          <h2 className="font-headline text-headline-md uppercase text-foreground">
             {t(lgbtqPageCopy.lgbtqHeading, lang)}
           </h2>
           <PolicyProse text={t(lgbtqPolicyText, lang)} className="mt-4" />
         </section>
 
-        <section className="border-t border-border pt-12">
-          <h2 className="text-xl font-semibold tracking-tight text-foreground">
+        <section className="border-t-2 border-border pt-12">
+          <h2 className="font-headline text-headline-md uppercase text-foreground">
             {t(lgbtqPageCopy.civilPartnershipHeading, lang)}
           </h2>
           <PolicyProse text={t(civilPartnershipText, lang)} className="mt-4" />

@@ -1,96 +1,56 @@
-import { Scale, HeartHandshake, Users, Sparkles } from "lucide-react";
-import Link from "next/link";
+﻿import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { getSiteLinks } from "@/config/site-links";
-import { homeCopy, homeValues } from "@/lib/dictionaries/home";
+import { homeSectionCopy } from "@/lib/dictionaries/home";
 import { t } from "@/lib/translate";
-
-const valueIcons = {
-  freedom: Sparkles,
-  justice: Scale,
-  solidarity: HeartHandshake,
-  equality: Users,
-} as const;
 
 type HomeSectionProps = {
   lang: string;
 };
 
 export function HomeSection({ lang }: HomeSectionProps) {
-  const { joinFormUrl } = getSiteLinks();
-
   return (
-    <section
-      id="home"
-      className="relative overflow-hidden border-b border-border bg-background"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,color-mix(in_oklch,var(--primary)_18%,transparent),transparent)]"
-      />
-
-      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
-        <div className="max-w-3xl">
-          <p className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-            {t(homeCopy.eyebrow, lang)}
-          </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-            {t(homeCopy.headline, lang)}
+    <section className="relative w-full min-h-[819px] flex flex-col justify-center border-b-8 border-proletarian-red overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <div
+          className="w-full h-full bg-cover bg-center grayscale opacity-20"
+          style={{
+            backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpiUpWxXKuxpPA8eXvKL90zZ2xJVKlYZ8syIQ87YgsPF2tmxKto2n8NxmsIAxGtOUFSoV4txswaobN3y4PldBBV200u8NJpy9uvGZ_Yz5lxJBtAOqS8zBLJmLOjdY7aNAyqA7m3jo_NjJ2RrQ9i1kyTQ5R2kkc_i3agnkWUav4ViLDGOMsv9KWyPwMLxl6atWvzznfhyVwBKlnEyLXNhf07v3IPX6G33TQFG4UZDqRA75Sy0fVjg2jhj2QYRStWPhUo-VL9cBjcjUk')",
+          }}
+        />
+      </div>
+      <div className="relative z-10 max-w-container-max mx-auto px-4 md:px-16 py-20 w-full">
+        <div className="max-w-4xl">
+          <div className="inline-block bg-foreground text-background font-label-caps text-label-caps px-2 py-1 mb-6">
+            {t(homeSectionCopy.eyebrow, lang)}
+          </div>
+          <h1 className="font-display-lg text-display-lg text-foreground uppercase leading-none mb-8 mix-blend-multiply max-w-4xl">
+            {t(homeSectionCopy.headlineLead, lang)}
+            <br />
+            <span className="text-proletarian-red">
+              {t(homeSectionCopy.headlineHighlight, lang)}
+            </span>
+            <br />
+            {t(homeSectionCopy.headlineTail, lang)}
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            {t(homeCopy.mission, lang)}
+          <p className="font-body-lg text-body-lg text-foreground max-w-2xl mb-10 border-l-4 border-proletarian-red pl-4 bg-background/80 p-4 brutal-border">
+            {t(homeSectionCopy.body, lang)}
           </p>
-          {joinFormUrl ? (
-            <div className="mt-10">
-              <Button
-                nativeButton={false}
-                render={
-                  <Link href={joinFormUrl} target="_blank" rel="noopener noreferrer" />
-                }
-                size="lg"
-                className="h-11 px-6 text-base"
-              >
-                {t(homeCopy.cta, lang)}
-              </Button>
-            </div>
-          ) : null}
-        </div>
-
-        <div className="mt-16 lg:mt-20">
-          <h2 className="text-sm font-semibold tracking-widest text-muted-foreground uppercase">
-            {t(homeCopy.valuesTitle, lang)}
-          </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-            {homeValues.map((value) => {
-              const Icon = valueIcons[value.key as keyof typeof valueIcons];
-
-              return (
-                <li key={value.key}>
-                  <Card className="h-full border-border/80 bg-card/80 shadow-none transition-shadow hover:shadow-md">
-                    <CardHeader className="gap-3">
-                      <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                        <Icon className="size-5" aria-hidden />
-                      </div>
-                      <CardTitle className="text-lg">{t(value.title, lang)}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <CardDescription className="text-sm leading-relaxed">
-                        {t(value.description, lang)}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                </li>
-              );
-            })}
-          </ul>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+              href={`/${lang}/about`}
+              className="bg-proletarian-red text-paper-white font-button text-button uppercase px-8 py-4 brutal-shadow transition-all duration-100 border-2 border-transparent hover:border-ink-black inline-flex items-center justify-center gap-2"
+            >
+              {t(homeSectionCopy.ctaPrimary, lang)}
+              <ArrowRight className="size-5" />
+            </Link>
+            <Link
+              href={`/${lang}/policy`}
+              className="bg-transparent text-foreground font-button text-button uppercase px-8 py-4 brutal-border transition-all duration-100 hover:bg-concrete-gray inline-flex items-center justify-center"
+            >
+              {t(homeSectionCopy.ctaSecondary, lang)}
+            </Link>
+          </div>
         </div>
       </div>
     </section>

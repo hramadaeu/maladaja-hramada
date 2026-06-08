@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
         hostname: "img.buymeacoffee.com",
         pathname: "/button-api/**",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
     ],
   },
   webpack: (webpackConfig) => {

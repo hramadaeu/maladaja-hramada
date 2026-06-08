@@ -25,15 +25,15 @@ export const navigation: NavItem[] = [
       pl: "Polityka",
     },
   },
-  {
-    href: "/projects",
-    label: {
-      ru: "Проекты",
-      be: "Праекты",
-      en: "Projects",
-      pl: "Projekty",
-    },
-  },
+  // {
+  //   href: "/projects",
+  //   label: {
+  //     ru: "Проекты",
+  //     be: "Праекты",
+  //     en: "Projects",
+  //     pl: "Projekty",
+  //   },
+  // },
 ];
 
 /** Donate CTA — scrolls to #donate on the homepage. */

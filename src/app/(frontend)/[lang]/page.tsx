@@ -1,9 +1,9 @@
-import { isValidLocale } from "@/config/i18n";
+﻿import { isValidLocale } from "@/config/i18n";
 import {
-  DonateSection,
   HomeSection,
-  NewsTeaserSection,
-  ProjectsTeaserSection,
+  CampaignsSection,
+  DonateSection,
+  RosesSeparator,
 } from "@/components/sections";
 import { notFound } from "next/navigation";
 
@@ -19,10 +19,14 @@ export default async function HomePage({ params }: HomePageProps) {
   }
 
   return (
-    <div className="-mx-4 flex flex-col sm:-mx-6 lg:-mx-8">
-      <HomeSection lang={lang} />
-      <NewsTeaserSection lang={lang} />
-      <ProjectsTeaserSection lang={lang} />
+    <div className="flex flex-col">
+        {/* Full-width hero breakout */}
+        <div className="w-screen relative left-1/2 -translate-x-1/2">
+          <HomeSection lang={lang} />
+        </div>
+
+      <CampaignsSection lang={lang} />
+      <RosesSeparator />
       <DonateSection lang={lang} />
     </div>
   );

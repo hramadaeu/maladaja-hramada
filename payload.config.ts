@@ -9,6 +9,7 @@ import { Media } from "./src/collections/Media";
 import { News } from "./src/collections/News";
 import { Projects } from "./src/collections/Projects";
 import { Users } from "./src/collections/Users";
+import { defaultLocale, locales } from "./src/config/locales";
 import { GlobalSettings } from "./src/globals/GlobalSettings";
 
 const filename = fileURLToPath(import.meta.url);
@@ -25,8 +26,8 @@ export default buildConfig({
   editor: lexicalEditor(),
   globals: [GlobalSettings],
   localization: {
-    locales: ["ru", "be", "en", "pl"],
-    defaultLocale: "ru",
+    locales: [...locales],
+    defaultLocale,
   },
   secret: process.env.PAYLOAD_SECRET as string,
   db: postgresAdapter({

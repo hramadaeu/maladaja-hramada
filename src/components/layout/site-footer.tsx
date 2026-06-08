@@ -1,12 +1,15 @@
-"use client";
-
-import Link from "next/link";
+﻿import Link from "next/link";
 import {
   FaInstagram,
   FaTelegram,
   FaTiktok,
   FaLinkedin,
 } from "react-icons/fa6";
+
+import { OrgNameWordmark } from "@/components/brand/org-name-wordmark";
+import { footerCopy } from "@/lib/dictionaries/footer";
+import { navigation } from "@/config/site";
+import type { Locale } from "@/config/i18n";
 
 const socialLinks = [
   {
@@ -31,12 +34,43 @@ const socialLinks = [
   },
 ];
 
-export function SiteFooter() {
+type SiteFooterProps = {
+  lang: string;
+};
+
+export function SiteFooter({ lang }: SiteFooterProps) {
+  const locale = lang as Locale;
+
   return (
-    <footer className="border-t border-border bg-muted/30">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-        {/* Social Media Icons */}
-        <div className="flex items-center gap-3">
+    <footer className="bg-ink-black w-full border-t-8 border-proletarian-red">
+      <div className="flex flex-col md:flex-row justify-between items-center px-4 md:px-16 py-12 w-full max-w-container-max mx-auto">
+        <Link
+          href={`/${lang}`}
+          className="mb-6 md:mb-0 inline-flex transition-opacity hover:opacity-90"
+          aria-label="Maladaja Hramada — home"
+        >
+          <OrgNameWordmark light className="h-7 w-[min(100%,200px)] sm:h-8 sm:w-[220px]" />
+        </Link>
+
+        <div className="flex flex-wrap justify-center gap-6 mb-6 md:mb-0 font-label-caps text-label-caps">
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={`/${lang}${item.href}`}
+              className="text-paper-white/70 hover:text-paper-white hover:underline decoration-proletarian-red decoration-2 transition-opacity duration-200"
+            >
+              {item.label[locale]}
+            </Link>
+          ))}
+          <Link
+            href="#"
+            className="text-paper-white/70 hover:text-paper-white hover:underline decoration-proletarian-red decoration-2 transition-opacity duration-200"
+          >
+            {footerCopy.pressKit[locale]}
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-3 mb-6 md:mb-0">
           {socialLinks.map((social) => {
             const Icon = social.icon;
             return social.href ? (
@@ -45,7 +79,7 @@ export function SiteFooter() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                className="group relative inline-flex h-9 w-9 items-center justify-center text-paper-white/70 transition-all hover:text-proletarian-red"
                 aria-label={social.name}
               >
                 <Icon className="h-5 w-5" />
@@ -53,10 +87,9 @@ export function SiteFooter() {
             ) : null;
           })}
         </div>
-
-        <p className="text-xs text-muted-foreground/60">
-          © {new Date().getFullYear()} Maladaja Hramada. All rights reserved.
-        </p>
+      </div>
+      <div className="font-label-caps text-label-caps text-proletarian-red text-center pb-4">
+        &copy; {new Date().getFullYear()} {footerCopy.tagline[locale]}
       </div>
     </footer>
   );

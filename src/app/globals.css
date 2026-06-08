@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "../styles/colors.css";
@@ -7,9 +7,22 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-family-sans);
-  --font-heading: var(--font-family-heading);
+  --font-display-lg: var(--font-family-display-lg);
+  --text-display-lg: var(--font-size-display-lg);
+  --text-display-lg--line-height: var(--line-height-display-lg);
+  --text-display-lg--letter-spacing: var(--letter-spacing-display-lg);
+  --text-display-lg--font-weight: var(--font-weight-display-lg);
+  --font-headline: var(--font-family-headline);
+  --font-heading: var(--font-family-headline);
+  --font-body: var(--font-family-body);
+  --font-sans: var(--font-family-body);
   --font-mono: var(--font-family-mono);
+  --font-button: var(--font-family-button);
+  --text-button: var(--font-size-button);
+  --text-button--line-height: var(--line-height-button);
+  --text-button--letter-spacing: var(--letter-spacing-button);
+  --text-button--font-weight: var(--font-weight-button);
+  --font-label-caps: var(--font-family-label-caps);
 
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
@@ -17,6 +30,10 @@
   --color-brand-subtle: var(--brand-subtle);
   --color-brand-red: var(--brand-red);
   --color-brand-charcoal: var(--brand-charcoal);
+  --color-proletarian-red: var(--proletarian-red);
+  --color-ink-black: var(--ink-black);
+  --color-paper-white: var(--paper-white);
+  --color-concrete-gray: var(--concrete-gray);
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -63,58 +80,58 @@
     @apply border-border outline-ring/50;
   }
 
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   html {
-    @apply font-sans;
+    @apply font-body;
     scroll-behavior: smooth;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-size: var(--font-size-base);
-    line-height: var(--line-height-normal);
+    font-size: var(--font-size-body-md);
+    line-height: var(--line-height-body-md);
   }
 
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-family-heading);
-    letter-spacing: var(--letter-spacing-tight);
+    font-family: var(--font-family-headline);
+    letter-spacing: var(--letter-spacing-headline-lg);
   }
 
-  /* Anchor targets clear the sticky header */
   #donate {
     scroll-margin-top: 5.5rem;
   }
 }
 
-/* Organization name: Cyrillic ↔ Latin crossfade */
+.brutal-shadow {
+  box-shadow: 4px 4px 0px 0px #1e1e1c;
+}
+
+.brutal-shadow:active {
+  box-shadow: 0px 0px 0px 0px #1e1e1c;
+  transform: translate(4px, 4px);
+}
+
+.brutal-border {
+  border: 2px solid var(--color-border);
+}
+
 @keyframes org-name-show {
-  0%,
-  42% {
-    opacity: 1;
-  }
-  50%,
-  92% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  0%, 42% { opacity: 1; }
+  50%, 92% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes org-name-hide {
-  0%,
-  42% {
-    opacity: 0;
-  }
-  50%,
-  92% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0%, 42% { opacity: 0; }
+  50%, 92% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .org-name-cyrillic {
@@ -130,7 +147,6 @@
   .org-name-latin {
     animation: none;
   }
-
   .org-name-latin {
     opacity: 0;
   }

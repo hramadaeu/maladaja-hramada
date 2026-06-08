@@ -1,97 +1,163 @@
 import type { Locale } from "@/config/i18n";
 
-export const homeCopy = {
+/**
+ * Hero section on the main page (currently rendered by `HomeSection`).
+ * The headline is split into three pieces so the middle word can keep its
+ * red highlight styling while the surrounding words re-flow per language.
+ */
+export const homeSectionCopy = {
   eyebrow: {
-    ru: "Молодёжная организация",
-    be: "Маладзёжная арганізацыя",
-    en: "Youth organization",
-    pl: "Organizacja młodzieżowa",
+    ru: "МАНИФЕСТ 2026",
+    be: "МАНІФЕСТ 2026",
+    en: "MANIFESTO 2026",
+    pl: "MANIFEST 2026",
   } satisfies Record<Locale, string>,
-  headline: {
-    ru: "Кто мы и наши ценности",
-    be: "Хто мы і нашы каштоўнасці",
-    en: "Who we are and our values",
-    pl: "Kim jesteśmy i nasze wartości",
+  headlineLead: {
+    ru: "За",
+    be: "За",
+    en: "For A",
+    pl: "Po",
   } satisfies Record<Locale, string>,
-  mission: {
-    ru: "«Маладая Грамада» — прогрессивное молодёжное движение социал-демократических ценностей. Мы объединяем активистов, которые строят справедливое, свободное и солидарное общество в Беларуси и за её пределами.",
-    be: "«Маладая Грамада» — прагрэсіўны малады рух сацыял-дэмакратычных каштоўнасцяў. Мы аб’ядноўваем актывістаў, якія будуюць справядлівае, свабоднае і салідарнае грамадства ў Беларусі і за яе межамі.",
-    en: "Maladaja Hramada is a progressive youth movement rooted in social democratic values. We bring together activists building a fair, free, and solidarity-driven society in Belarus and beyond.",
-    pl: "Młoda Hromada to progresywny ruch młodzieżowy oparty na wartościach socjaldemokratycznych. Łączymy aktywistów budujących sprawiedliwe, wolne i solidarne społeczeństwo na Białorusi i poza nią.",
+  headlineHighlight: {
+    ru: "демократическое",
+    be: "дэмакратычную",
+    en: "Democratic",
+    pl: "demokratyczną",
   } satisfies Record<Locale, string>,
-  cta: {
-    ru: "Присоединиться",
-    be: "Далучыцца",
-    en: "Join us",
-    pl: "Dołącz",
+  headlineTail: {
+    ru: "будущее.",
+    be: "будучыню.",
+    en: "Future.",
+    pl: "przyszłość.",
   } satisfies Record<Locale, string>,
-  valuesTitle: {
-    ru: "Наши ценности",
-    be: "Нашы каштоўнасці",
-    en: "Our values",
-    pl: "Nasze wartości",
+  body: {
+    ru: "Мы — поколение, которое отказывается ждать. Мы строим силу через низовые действия, бескомпромиссные требования и радикальную солидарность. Время тихих вежливых просьб прошло.",
+    be: "Мы — пакаленне, якое адмаўляецца чакаць. Мы будуем сілу праз нізавыя дзеянні, бескампрамісныя патрабаванні і радыкальную салідарнасць. Час ціхіх ветлівых просьбаў скончыўся.",
+    en: "We are the generation that refuses to wait. We build power through grassroots action, uncompromising demands, and radical solidarity. The time for quiet polite requests is over.",
+    pl: "Jesteśmy pokoleniem, które nie chce czekać. Budujemy siłę poprzez działania oddolne, bezkompromisowe postulaty i radykalną solidarność. Czas cichych, uprzejmych próśb się skończył.",
+  } satisfies Record<Locale, string>,
+  ctaPrimary: {
+    ru: "Присоединиться к движению",
+    be: "Далучыцца да руху",
+    en: "Join the Movement",
+    pl: "Dołącz do ruchu",
+  } satisfies Record<Locale, string>,
+  ctaSecondary: {
+    ru: "Наши требования",
+    be: "Нашы патрабаванні",
+    en: "Read Our Demands",
+    pl: "Nasze postulaty",
   } satisfies Record<Locale, string>,
 } as const;
 
-export const homeValues = [
-  {
-    key: "freedom",
+/** Campaigns grid on the main page (rendered by `CampaignsSection`). */
+export const campaignsCopy = {
+  title: {
+    ru: "Последние кампании",
+    be: "Апошнія кампаніі",
+    en: "Latest Campaigns",
+    pl: "Najnowsze kampanie",
+  } satisfies Record<Locale, string>,
+  viewAll: {
+    ru: "Все кампании",
+    be: "Усе кампаніі",
+    en: "View All",
+    pl: "Wszystkie",
+  } satisfies Record<Locale, string>,
+  urgent: {
+    ru: "СРОЧНО",
+    be: "ТЭРМІНОВА",
+    en: "URGENT",
+    pl: "PILNE",
+  } satisfies Record<Locale, string>,
+  ongoing: {
+    ru: "ТЕКУЩАЯ",
+    be: "БЯГУЧАЯ",
+    en: "ONGOING",
+    pl: "W TOKU",
+  } satisfies Record<Locale, string>,
+  signatures: {
+    ru: "ПОДПИСЕЙ",
+    be: "ПОДПІСАЎ",
+    en: "SIGNATURES",
+    pl: "PODPISÓW",
+  } satisfies Record<Locale, string>,
+  card1: {
     title: {
-      ru: "Свобода",
-      be: "Свабода",
-      en: "Freedom",
-      pl: "Wolność",
+      ru: "Защитим права студентов",
+      be: "Абаранім правы студэнтаў",
+      en: "Defend Student Rights",
+      pl: "Brońmy praw studentów",
     } satisfies Record<Locale, string>,
     description: {
-      ru: "Право каждого на достойную жизнь, самовыражение и участие в общественных решениях.",
-      be: "Права кожнага на годную жыццё, самавыражэнне і ўдзел у грамадскіх рашэннях.",
-      en: "Everyone’s right to a dignified life, self-expression, and participation in public decisions.",
-      pl: "Prawo każdego do godnego życia, wyrażania siebie i udziału w decyzjach publicznych.",
+      ru: "Мобилизуем студентов вузов против последнего повышения платы за обучение и требуем прозрачного распределения финансирования. Присоединяйтесь к забастовке в следующую пятницу.",
+      be: "Мабілізуем студэнтаў ВНУ супраць апошняга павышэння платы за навучанне і патрабуем празрыстага размеркавання фінансавання. Далучайцеся да забастоўкі ў наступную пятніцу.",
+      en: "Mobilizing across universities to protest the recent tuition hikes and demand transparent funding allocation. Join the strike next Friday.",
+      pl: "Mobilizujemy środowiska uniwersyteckie przeciwko ostatnim podwyżkom czesnego i domagamy się przejrzystego przydziału funduszy. Dołącz do strajku w najbliższy piątek.",
+    } satisfies Record<Locale, string>,
+    signCta: {
+      ru: "Подписать петицию",
+      be: "Падпісаць петыцыю",
+      en: "Sign Petition",
+      pl: "Podpisz petycję",
+    } satisfies Record<Locale, string>,
+    alt: {
+      ru: "Протестующие с плакатами",
+      be: "Пратэстоўцы з плакатамі",
+      en: "Protestors holding signs",
+      pl: "Protestujący z transparentami",
     } satisfies Record<Locale, string>,
   },
-  {
-    key: "justice",
+  card2: {
     title: {
-      ru: "Справедливость",
-      be: "Справядлівасць",
-      en: "Justice",
-      pl: "Sprawiedliwość",
+      ru: "Солидарность с профсоюзом",
+      be: "Салідарнасць з прафсаюзам",
+      en: "Workers Union Solidarity",
+      pl: "Solidarność ze związkiem zawodowym",
     } satisfies Record<Locale, string>,
     description: {
-      ru: "Равные возможности, защита прав человека и ответственность власти перед обществом.",
-      be: "Роўныя магчымасці, абарона правоў чалавека і адказнасць улады перад грамадствам.",
-      en: "Equal opportunity, human rights protection, and accountability of power to society.",
-      pl: "Równe szanse, ochrona praw człowieka i odpowiedzialność władzy wobec społeczeństwa.",
+      ru: "Поддерживаем работников транспорта в их требованиях справедливой оплаты и безопасных условий труда. Они двигают город — они заслуживают уважения.",
+      be: "Падтрымліваем работнікаў транспарту ў іх патрабаваннях справядлівай аплаты і бяспечных умоваў працы. Яны рухаюць горад — яны заслугоўваюць павагі.",
+      en: "Standing with the transit workers in their demand for fair wages and safe working conditions. They move the city; they deserve respect.",
+      pl: "Stoimy ramię w ramię z pracownikami transportu w ich walce o godne wynagrodzenia i bezpieczne warunki pracy. Oni napędzają miasto — zasługują na szacunek.",
+    } satisfies Record<Locale, string>,
+    tags: {
+      ru: ["ТРУД", "СОЛИДАРНОСТЬ"],
+      be: ["ПРАЦА", "САЛІДАРНАСЦЬ"],
+      en: ["LABOR", "SOLIDARITY"],
+      pl: ["PRACA", "SOLIDARNOŚĆ"],
+    } satisfies Record<Locale, readonly string[]>,
+    readMoreCta: {
+      ru: "Подробнее",
+      be: "Падрабязней",
+      en: "Read More",
+      pl: "Czytaj dalej",
+    } satisfies Record<Locale, string>,
+    alt: {
+      ru: "Мегафон на земле",
+      be: "Мегафон на зямлі",
+      en: "Megaphone on ground",
+      pl: "Megafon na ziemi",
     } satisfies Record<Locale, string>,
   },
-  {
-    key: "solidarity",
+  card3: {
     title: {
-      ru: "Солидарность",
-      be: "Салідарнасць",
-      en: "Solidarity",
-      pl: "Solidarność",
+      ru: "Сеть взаимопомощи",
+      be: "Сетка ўзаемадапамогі",
+      en: "Mutual Aid Network",
+      pl: "Sieć wzajemnej pomocy",
     } satisfies Record<Locale, string>,
     description: {
-      ru: "Взаимная поддержка внутри сообщества и солидарность с теми, кто борется за демократию.",
-      be: "Узаемная падтрымка ў супольнасці і салідарнасць з тымі, хто змагаецца за дэмакратыю.",
-      en: "Mutual support within our community and solidarity with those fighting for democracy.",
-      pl: "Wzajemne wsparcie w społeczności i solidarność z tymi, którzy walczą o demokrację.",
+      ru: "Наш фонд общественной защиты оказывает прямую поддержку активистам, на которых давят судебными исками, и бастующим работникам. Солидарность — наше оружие.",
+      be: "Наш фонд грамадскай абароны аказвае прамую падтрымку актывістам, якія сутыкаюцца з судовымі іскамі, і бастуючым работнікам. Салідарнасць — нашая зброя.",
+      en: "Our community defense fund provides direct support to activists facing legal fees and workers striking for better conditions. Solidarity is our weapon.",
+      pl: "Nasz fundusz obrony społecznej zapewnia bezpośrednie wsparcie aktywistom mierzącym się z kosztami prawnymi oraz strajkującym pracownikom. Solidarność jest naszą bronią.",
+    } satisfies Record<Locale, string>,
+    contributeCta: {
+      ru: "Поддержать",
+      be: "Падтрымаць",
+      en: "Contribute Now",
+      pl: "Wesprzyj",
     } satisfies Record<Locale, string>,
   },
-  {
-    key: "equality",
-    title: {
-      ru: "Равенство",
-      be: "Роўнасць",
-      en: "Equality",
-      pl: "Równość",
-    } satisfies Record<Locale, string>,
-    description: {
-      ru: "Борьба с дискриминацией и создание инклюзивного пространства для всех молодых людей.",
-      be: "Барацьба з дыскрымінацыяй і стварэнне інклюзіўнага прасторы для ўсіх маладых людзей.",
-      en: "Fighting discrimination and building an inclusive space for all young people.",
-      pl: "Walka z dyskryminacją i tworzenie inkluzywnej przestrzeni dla wszystkich młodych ludzi.",
-    } satisfies Record<Locale, string>,
-  },
-] as const;
+} as const;

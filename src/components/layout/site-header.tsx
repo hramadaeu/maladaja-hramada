@@ -1,17 +1,17 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 import { SiteLogo } from "@/components/brand/site-logo";
 import { DonateNavLink } from "@/components/navigation/donate-nav-link";
 import { LanguageSwitcher } from "@/components/navigation/language-switcher";
+import { MobileMenu } from "@/components/navigation/mobile-menu";
+import { ThemeToggle } from "./theme-toggle";
 
 import type { Locale } from "@/config/i18n";
 
 import { navigation } from "@/config/site";
 
-import { cn } from "@/lib/utils";
-
 const navLinkClass =
-  "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground";
+  "font-button text-button uppercase text-ink-black hover:text-proletarian-red transition-all duration-100 hover:bg-concrete-gray active:translate-x-0.5 active:translate-y-0.5 px-3 py-2";
 
 type SiteHeaderProps = {
   lang: string;
@@ -21,32 +21,47 @@ export function SiteHeader({ lang }: SiteHeaderProps) {
   const locale = lang as Locale;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <SiteLogo lang={lang} />
+    <header className="bg-paper-white w-full border-b-2 border-ink-black z-50 relative">
+      <div className="flex justify-between items-center px-4 md:px-16 py-4 max-w-container-max mx-auto">
+        <Link
+          href={`/${lang}`}
+          className="shrink-0 hover:opacity-90 transition-opacity"
+          aria-label="Maladaja Hramada — home"
+        >
+          <SiteLogo lang={lang} />
+        </Link>
+
         <nav
-          className="flex flex-1 flex-nowrap items-center justify-end gap-0.5 overflow-x-auto sm:gap-1"
+          className="hidden md:flex items-center gap-1 font-button text-button uppercase"
           aria-label="Main"
         >
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={`/${lang}${item.href}`}
-              className={cn(navLinkClass, "shrink-0")}
+              className={navLinkClass}
             >
               {item.label[locale]}
             </Link>
           ))}
 
-          <DonateNavLink lang={lang} className={cn(navLinkClass, "shrink-0")} />
-
-          <div className="ml-2 border-l border-border pl-2">
+          <div className="ml-2 border-l-2 border-ink-black pl-2 flex items-center gap-1">
             <LanguageSwitcher currentLang={lang} />
+            <ThemeToggle />
           </div>
-
         </nav>
+
+        <div className="flex items-center gap-3">
+          <DonateNavLink
+            lang={lang}
+            className="hidden md:block bg-proletarian-red text-paper-white font-button text-button uppercase px-6 py-3 brutal-shadow transition-all duration-100 border-2 border-transparent hover:border-ink-black active:translate-x-0.5 active:translate-y-0.5"
+          />
+
+          <div className="md:hidden">
+            <MobileMenu lang={lang} />
+          </div>
+        </div>
       </div>
     </header>
   );
 }
-

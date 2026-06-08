@@ -1,19 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { CreditCardIcon, WalletIcon } from "lucide-react";
 
 import type { SiteLinks } from "@/config/site-links";
-import { BuyMeACoffeeButton } from "@/components/donate/buy-me-a-coffee-button";
 import { CopyButton } from "@/components/ui/copy-button";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -25,160 +15,169 @@ import {
 import { cryptoWallets, donateCopy } from "@/lib/dictionaries/donate";
 import { t } from "@/lib/translate";
 
+import { Button } from "@/components/ui/button";
+
 type DonateSectionClientProps = {
   lang: string;
   links: SiteLinks;
+  /** Pre-rendered QR code SVGs keyed by wallet id (e.g. "btc" → "<svg>…</svg>"). */
+  qrCodes: Record<string, string>;
 };
 
-function MockQrCode({ walletId }: { walletId: string }) {
-  const cells = Array.from({ length: 64 }, (_, i) => {
-    const hash = (walletId.charCodeAt(0) + i * 7) % 3;
-    return hash > 0;
-  });
+export function DonateSectionClient({
+  lang,
+  links,
+  qrCodes,
+}: DonateSectionClientProps) {
+  const { donationIban, donationBuyMeACoffeeUrl } = links;
 
   return (
-    <div
-      className="grid size-28 grid-cols-8 gap-0.5 rounded-lg border border-border bg-background p-2 sm:size-32"
-      aria-hidden
-    >
-      {cells.map((filled, index) => (
-        <div
-          key={`${walletId}-${index}`}
-          className={filled ? "rounded-sm bg-foreground" : "rounded-sm bg-muted"}
-        />
-      ))}
-    </div>
-  );
-}
-
-export function DonateSectionClient({ lang, links }: DonateSectionClientProps) {
-  const { donationIban, donationStripeUrl, donationBuyMeACoffeeUrl, donationPaypalUrl } =
-    links;
-
-  return (
-    <section id="donate" className="bg-muted/40 py-16 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+    <section id="donate" className="py-16 md:py-16">
+      <div className="mx-auto max-w-container-max px-4 md:px-16">
+        {/* Section header */}
+        <div className="mx-auto mb-12 md:mb-16">
+          <h2 className="font-headline text-headline-lg uppercase text-foreground">
             {t(donateCopy.title, lang)}
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mt-3 font-body text-body-md text-foreground/80">
             {t(donateCopy.subtitle, lang)}
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          <Card className="lg:col-span-1">
-            <CardHeader>
-              <CardTitle className="text-lg">{t(donateCopy.bankTitle, lang)}</CardTitle>
-              <CardDescription>{t(donateCopy.bankHint, lang)}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-4">
-              <div className="rounded-lg border border-dashed border-border bg-muted/50 p-4">
-                <p className="font-mono text-sm leading-relaxed break-all text-foreground sm:text-base">
-                  {donationIban}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <span className="inline-flex items-center rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground">
-                  {t(donateCopy.oneTime, lang)}
-                </span>
-                <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
-                  {t(donateCopy.regular, lang)}
-                </span>
-              </div>
-              <CopyButton
-                value={donationIban}
-                label={t(donateCopy.copy, lang)}
-                copiedLabel={t(donateCopy.copied, lang)}
-              />
-            </CardContent>
-          </Card>
+        {/* Primary: Direct bank transfer (full width, prominent) */}
+        <article className="brutal-border bg-background mb-8 border-l-8 border-l-proletarian-red p-6 md:p-10">
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <h3 className="font-headline text-headline-md uppercase text-foreground">
+              {t(donateCopy.bankTitle, lang)}
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <span className="bg-foreground px-2 py-1 font-label-caps text-label-caps text-background">
+                {t(donateCopy.oneTime, lang)}
+              </span>
+              <span className="bg-proletarian-red px-2 py-1 font-label-caps text-label-caps text-paper-white">
+                {t(donateCopy.regular, lang)}
+              </span>
+            </div>
+          </div>
+          <p className="mb-6 max-w-2xl font-body text-body-md text-foreground/80">
+            {t(donateCopy.bankDescription, lang)}
+          </p>
+          <div className="mb-6 rounded-lg border-2 border-dashed border-border bg-muted p-4">
+            <p className="break-all font-mono text-base leading-relaxed text-foreground sm:text-lg">
+              {donationIban}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <CopyButton
+              value={donationIban}
+              label={t(donateCopy.copy, lang)}
+              copiedLabel={t(donateCopy.copied, lang)}
+            />
+          </div>
+        </article>
 
-          <Card className="lg:col-span-1">
-            <CardHeader>
-              <CardTitle className="text-lg">{t(donateCopy.onlineTitle, lang)}</CardTitle>
-              <CardDescription>{t(donateCopy.subtitle, lang)}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-4">
-              <Button
-                nativeButton={false}
-                variant="outline"
-                className="h-11 w-full justify-start gap-3"
-                disabled={!donationStripeUrl}
-                render={
-                  <Link
-                    href={donationStripeUrl || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
-              >
-                <CreditCardIcon className="size-4 text-primary" />
-                Stripe
-              </Button>
-
-              {donationBuyMeACoffeeUrl ? (
-                <div className="flex justify-center rounded-lg border border-border bg-background py-3">
-                  <BuyMeACoffeeButton href={donationBuyMeACoffeeUrl} />
-                </div>
-              ) : null}
-
-              <Button
-                nativeButton={false}
-                variant="outline"
-                className="h-11 w-full justify-start gap-3"
-                disabled={!donationPaypalUrl}
-                render={
-                  <Link
-                    href={donationPaypalUrl || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
-              >
-                <WalletIcon className="size-4 text-primary" />
-                PayPal
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="lg:col-span-1">
-            <CardHeader>
-              <CardTitle className="text-lg">{t(donateCopy.cryptoTitle, lang)}</CardTitle>
-              <CardDescription>{t(donateCopy.cryptoDialogDesc, lang)}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Dialog>
-                <DialogTrigger
-                  render={
-                    <Button variant="default" className="h-11 w-full">
-                      {t(donateCopy.cryptoCta, lang)}
-                    </Button>
-                  }
+        {/* Secondary: BMC + Crypto in 2 columns */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Buy Me a Coffee card */}
+          <article className="brutal-border bg-background flex flex-col p-6 md:p-8">
+            <h3 className="mb-3 font-headline text-headline-md uppercase text-foreground">
+              {t(donateCopy.bmcTitle, lang)}
+            </h3>
+            <p className="mb-6 flex-grow font-body text-body-md text-foreground/80">
+              {t(donateCopy.bmcDescription, lang)}
+            </p>
+            <Button
+              nativeButton={false}
+              variant="default"
+              disabled={!donationBuyMeACoffeeUrl}
+              className="h-12 w-full font-button text-button uppercase"
+              render={
+                <Link
+                  href={donationBuyMeACoffeeUrl || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 />
-                <DialogContent className="sm:max-w-lg">
-                  <DialogHeader>
-                    <DialogTitle>{t(donateCopy.cryptoDialogTitle, lang)}</DialogTitle>
-                    <DialogDescription>
-                      {t(donateCopy.cryptoDialogDesc, lang)}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <ul className="grid gap-6 sm:grid-cols-3">
-                    {cryptoWallets.map((wallet) => (
-                      <li key={wallet.id} className="flex flex-col items-center gap-3 text-center">
-                        <MockQrCode walletId={wallet.id} />
-                        <p className="text-xs font-medium text-foreground">{wallet.label}</p>
-                        <p className="font-mono text-[10px] text-muted-foreground break-all">
-                          {wallet.id}…mock-address
+              }
+            >
+              {t(donateCopy.bmcCta, lang)}
+            </Button>
+          </article>
+
+          {/* Crypto card */}
+          <article className="brutal-border bg-background flex flex-col p-6 md:p-8">
+            <h3 className="mb-3 font-headline text-headline-md uppercase text-foreground">
+              {t(donateCopy.cryptoTitle, lang)}
+            </h3>
+            <p className="mb-6 flex-grow font-body text-body-md text-foreground/80">
+              {t(donateCopy.cryptoDialogDesc, lang)}
+            </p>
+            <Dialog>
+              <DialogTrigger
+                render={
+                  <Button
+                    nativeButton
+                    variant="outline"
+                    className="h-12 w-full font-button text-button uppercase border-2 border-border text-foreground hover:bg-muted"
+                  >
+                    {t(donateCopy.cryptoCta, lang)}
+                  </Button>
+                }
+              />
+              <DialogContent className="sm:max-w-lg">
+                <DialogHeader>
+                  <DialogTitle>{t(donateCopy.cryptoDialogTitle, lang)}</DialogTitle>
+                  <DialogDescription>
+                    {t(donateCopy.cryptoDialogDesc, lang)}
+                  </DialogDescription>
+                </DialogHeader>
+                <ul className="grid gap-6 sm:grid-cols-3">
+                  {cryptoWallets.map((wallet) => {
+                    const address = links.donationWallets[wallet.id];
+                    return (
+                      <li
+                        key={wallet.id}
+                        className="flex flex-col items-center gap-3 text-center"
+                      >
+                        <div
+                          className="size-28 sm:size-32 [&>svg]:size-full [&>svg]:rounded-lg [&>svg]:border-2 [&>svg]:border-ink-black [&>svg]:bg-paper-white"
+                          // The SVG comes from the trusted `qrcode` library
+                          // (server-rendered), so this is safe to inject.
+                          dangerouslySetInnerHTML={{
+                            __html: qrCodes[wallet.id] ?? "",
+                          }}
+                          role="img"
+                          aria-label={`${wallet.label} wallet address QR code`}
+                        />
+                        <p className="text-xs font-medium text-foreground">
+                          {wallet.label}
                         </p>
+                        {address ? (
+                          <>
+                            <p
+                              className="w-full font-mono text-[10px] text-foreground/70 break-all"
+                              title={address}
+                            >
+                              {address}
+                            </p>
+                            <CopyButton
+                              value={address}
+                              label={t(donateCopy.copy, lang)}
+                              copiedLabel={t(donateCopy.copied, lang)}
+                              className="w-full"
+                            />
+                          </>
+                        ) : (
+                          <p className="font-mono text-[10px] text-foreground/40">
+                            —
+                          </p>
+                        )}
                       </li>
-                    ))}
-                  </ul>
-                </DialogContent>
-              </Dialog>
-            </CardContent>
-          </Card>
+                    );
+                  })}
+                </ul>
+              </DialogContent>
+            </Dialog>
+          </article>
         </div>
       </div>
     </section>

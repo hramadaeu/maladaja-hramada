@@ -1,34 +1,44 @@
-/**
- * Typography - Inter (body), Space Grotesk (headings).
- * Loaded in app/(frontend)/layout.tsx.
- */
-:root {
-  --font-family-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-family-heading: var(--font-space-grotesk), var(--font-inter), ui-sans-serif,
-    system-ui, sans-serif;
-  --font-family-mono: ui-monospace, monospace;
+﻿:root {
+  --font-family-display-lg: var(--font-russo-one), "Impact", ui-sans-serif, sans-serif;
+  --font-family-headline: var(--font-russo-one), "Impact", ui-sans-serif, sans-serif;
+  --font-family-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-family-button: var(--font-russo-one), "Impact", ui-sans-serif, sans-serif;
+  --font-family-label-caps: var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
+  --font-size-display-lg: clamp(3rem, 10vw, 8rem);
+  --font-size-headline-lg: 2.5rem;
+  --font-size-headline-lg-mobile: 2rem;
+  --font-size-headline-md: 1.5rem;
+  --font-size-body-lg: 1.125rem;
+  --font-size-body-md: 1rem;
+  --font-size-button: 1rem;
+  --font-size-label-caps: 0.75rem;
 
-  --line-height-tight: 1.2;
-  --line-height-snug: 1.375;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.625;
+  --line-height-display-lg: 1;
+  --line-height-headline-lg: 1.1;
+  --line-height-headline-lg-mobile: 1.125;
+  --line-height-headline-md: 1.167;
+  --line-height-body-lg: 1.556;
+  --line-height-body-md: 1.5;
+  --line-height-button: 1;
+  --line-height-label-caps: 1.333;
 
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  --letter-spacing-display-lg: -0.04em;
+  --letter-spacing-headline-lg: -0.02em;
+  --letter-spacing-headline-lg-mobile: -0.02em;
+  --letter-spacing-headline-md: 0;
+  --letter-spacing-body-lg: 0;
+  --letter-spacing-body-md: 0;
+  --letter-spacing-button: 0;
+  --letter-spacing-label-caps: 0.1em;
 
-  --letter-spacing-tight: -0.025em;
-  --letter-spacing-wide: 0.05em;
-  --letter-spacing-wider: 0.1em;
+  --font-weight-display-lg: 800;
+  --font-weight-headline-lg: 700;
+  --font-weight-headline-lg-mobile: 700;
+  --font-weight-headline-md: 700;
+  --font-weight-body-lg: 400;
+  --font-weight-body-md: 400;
+  --font-weight-button: 700;
+  --font-weight-label-caps: 700;
 }

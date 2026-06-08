@@ -1,15 +1,23 @@
-import { Inter, Space_Grotesk } from "next/font/google";
+﻿import { Russo_One, Inter, JetBrains_Mono } from "next/font/google";
+
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 import "../globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin", "cyrillic"],
+const russoOne = Russo_One({
+  variable: "--font-russo-one",
+  subsets: ["cyrillic", "latin"],
+  weight: "400",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["cyrillic", "latin"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["cyrillic", "latin"],
 });
 
 export default function FrontendLayout({
@@ -19,11 +27,32 @@ export default function FrontendLayout({
 }>) {
 
   return (
-    <html lang="ru" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${spaceGrotesk.variable} min-h-screen font-sans`}
-      >
-        {children}
+    <html
+      lang="ru"
+      suppressHydrationWarning
+      className={`${russoOne.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('theme') || 'system';
+                const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                if (isDark) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-screen bg-background text-foreground font-sans">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

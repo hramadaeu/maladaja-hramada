@@ -25,10 +25,10 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
     <>
       <HashScroll />
       <SiteHeader lang={lang} />
-      <main className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <main className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6 sm:pb-8 lg:px-8">
         {children}
       </main>
-      <SiteFooter />
+      <SiteFooter lang={lang} />
     </>
   );
 }
