@@ -1,5 +1,7 @@
 ﻿import { cookies } from "next/headers";
 import { Russo_One, Inter, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { ThemeProvider } from "@/components/ui/theme-provider";
 
@@ -62,6 +64,8 @@ export default async function FrontendLayout({
         <ThemeProvider>
           {children}
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
