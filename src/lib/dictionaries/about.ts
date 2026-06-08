@@ -2,10 +2,10 @@
 
 export const aboutCopy = {
   badge: {
-    ru: "О НАС",
-    be: "ПРА НАС",
-    en: "ABOUT US",
-    pl: "O NAS",
+    ru: "О нас",
+    be: "Пра нас",
+    en: "About Us",
+    pl: "O nas",
   } satisfies Record<Locale, string>,
 
   whoWeAre: {
@@ -16,17 +16,17 @@ export const aboutCopy = {
   } satisfies Record<Locale, string>,
 
   mission: {
-    ru: "«Маладая Грамада» — прогрессивное молодёжное движение социал-демократических ценностей. Мы объединяем активистов, которые строят справедливое, свободное и солидарное общество в Беларуси и за её пределами.",
-    be: "«Маладая Грамада» — прагрэсіўны малады рух сацыял-дэмакратычных каштоўнасцяў. Мы аб’ядноўваем актывістаў, якія будуюць справядлівае, свабоднае і салідарнае грамадства ў Беларусі і за яе межамі.",
-    en: "Maladaja Hramada is a progressive youth movement rooted in social democratic values. We bring together activists building a fair, free, and solidarity-driven society in Belarus and beyond.",
-    pl: "Młoda Hromada to progresywny ruch młodzieżowy oparty na wartościach socjaldemokratycznych. Łączymy aktywistów budujących sprawiedliwe, wolne i solidarne społeczeństwo na Białorusi i poza nią.",
+    ru: "Маладая Грамада — прогрессивное молодёжное движение, которое стремится построить прогрессивную социал-демократическую Беларусь с сильными политическими и общественными институтами. Мы объединяем активистов, которые строят справедливое, свободное и солидарное общество в Беларуси и за её пределами.",
+    be: "Маладая Грамада — прагрэсіўны малады рух, які імкнецца пабудаваць прагрэсіўную сацыял-дэмакратычную Беларусь з моцнымі палітычнымі і грамадскімі інстытутамі. Мы аб’ядноўваем актывістаў, якія будуюць справядлівае, свабоднае і салідарнае грамадства ў Беларусі і за яе межамі.",
+    en: "Maladaja Hramada is a progressive youth movement that seeks to build a progressive social democratic Belarus with strong political and civic institutions. We bring together activists building a fair, free, and solidarity-driven society in Belarus and beyond.",
+    pl: "Młoda Hromada to progresywny ruch młodzieżowy, który dąży do zbudowania progresywnej socjaldemokratycznej Białorusi z silnymi instytucjami politycznymi i obywatelskimi. Łączymy aktywistów budujących sprawiedliwe, wolne i solidarne społeczeństwo na Białorusi i poza nią.",
   } satisfies Record<Locale, string>,
 
   founded: {
-    ru: "Основанная молодыми беларусами, которые отказываются мириться со статус-кво, мы организуем, обучаем и мобилизуем ради демократического будущего. Наша работа охватывает низовую активность, адвокацию политик, взаимопомощь и международную солидарность.",
-    be: "Заснаваная маладымі беларусамі, якія адмаўляюцца мірыцца са статус-кво, мы арганізуем, навучаем і мабілізуем дзеля дэмакратычнай будучыні. Наша праца ахоплівае нізавую актыўнасць, адвакацыю палітык, узаемадапамогу і міжнародную салідарнасць.",
-    en: "Founded by young Belarusians who refuse to accept the status quo, we organize, educate, and mobilize for a democratic future. Our work spans grassroots activism, policy advocacy, mutual aid, and international solidarity.",
-    pl: "Założona przez młodych Białorusinów, którzy odmawiają akceptacji status quo, organizujemy, edukujemy i mobilizujemy na rzecz demokratycznej przyszłości. Nasza działalność obejmuje aktywizm oddolny, rzecznictwo polityczne, wzajemną pomoc i solidarność międzynarodową.",
+    ru: "Молодые белорусы, которые отказываются мириться со статус-кво. Наша работа охватывает низовую активность, адвокацию политик, взаимопомощь и международную солидарность.",
+    be: "Маладыя беларусы, якія адмаўляюцца мірыцца са статус-кво. Наша праца ахоплівае нізавую актыўнасць, адвакацыю палітык, узаемадапамогу і міжнародную салідарнасць.",
+    en: "Young Belarusians who refuse to accept the status quo. Our work spans grassroots activism, policy advocacy, mutual aid, and international solidarity.",
+    pl: "Młodzi Białorusini, którzy odmawiają akceptacji status quo. Nasza działalność obejmuje aktywizm oddolny, rzecznictwo polityczne, wzajemną pomoc i solidarność międzynarodową.",
   } satisfies Record<Locale, string>,
 
   valuesTitle: {

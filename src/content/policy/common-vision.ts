@@ -5,11 +5,11 @@ import type { Locale } from "@/config/i18n";
  * Replace the placeholder strings below with your final copy.
  */
 export const commonVisionText: Record<Locale, string> = {
-  ru: `[ЗДЕСЬ: текст «Общее видение» на русском]
+  ru: `[ЗДЕСЬ: текст Общее видение на русском]
 
 Добавьте полный текст общего видения организации.`,
 
-  be: `[ТУТ: тэкст «Агульнае бачанне» на беларускай мове]
+  be: `[ТУТ: тэкст Агульнае бачанне на беларускай мове]
 
 Дадайце поўны тэкст агульнага бачання арганізацыі.`,
 

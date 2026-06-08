@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
+import { LogoMark } from "./logo-mark";
 import { OrgNameWordmark } from "./org-name-wordmark";
 
 type SiteLogoProps = {
@@ -18,6 +19,7 @@ export function SiteLogo({ lang, className }: SiteLogoProps) {
         className,
       )}
     >
+      <LogoMark className="hidden shrink-0 sm:block" />
       <OrgNameWordmark className="hidden min-w-0 sm:block" />
     </Link>
   );

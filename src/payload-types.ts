@@ -94,15 +94,15 @@ export interface Config {
     | ('false' | 'none' | 'null')
     | false
     | null
-    | ('ru' | 'be' | 'en' | 'pl')
-    | ('ru' | 'be' | 'en' | 'pl')[];
+    | ('be' | 'en' | 'pl' | 'ru')
+    | ('be' | 'en' | 'pl' | 'ru')[];
   globals: {
     'global-settings': GlobalSetting;
   };
   globalsSelect: {
     'global-settings': GlobalSettingsSelect<false> | GlobalSettingsSelect<true>;
   };
-  locale: 'ru' | 'be' | 'en' | 'pl';
+  locale: 'be' | 'en' | 'pl' | 'ru';
   widgets: {
     collections: CollectionsWidget;
   };

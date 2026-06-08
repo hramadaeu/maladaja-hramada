@@ -29,7 +29,7 @@ export function DonateSectionClient({
   links,
   qrCodes,
 }: DonateSectionClientProps) {
-  const { donationIban, donationBuyMeACoffeeUrl } = links;
+  const { donationIbanPln, donationIbanEur, donationBuyMeACoffeeUrl } = links;
 
   return (
     <section id="donate" className="py-16 md:py-16">
@@ -62,17 +62,40 @@ export function DonateSectionClient({
           <p className="mb-6 max-w-2xl font-body text-body-md text-foreground/80">
             {t(donateCopy.bankDescription, lang)}
           </p>
-          <div className="mb-6 rounded-lg border-2 border-dashed border-border bg-muted p-4">
-            <p className="break-all font-mono text-base leading-relaxed text-foreground sm:text-lg">
-              {donationIban}
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <CopyButton
-              value={donationIban}
-              label={t(donateCopy.copy, lang)}
-              copiedLabel={t(donateCopy.copied, lang)}
-            />
+          {/* PLN + EUR side by side */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {/* PLN */}
+            <div className="rounded-lg border-2 border-dashed border-border bg-muted p-3">
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <span className="bg-foreground px-2 py-0.5 font-label-caps text-label-caps text-background">
+                  PLN
+                </span>
+                <CopyButton
+                  value={donationIbanPln}
+                  label={t(donateCopy.copy, lang)}
+                  copiedLabel={t(donateCopy.copied, lang)}
+                />
+              </div>
+              <p className="break-all font-mono text-sm leading-relaxed text-foreground sm:text-base">
+                {donationIbanPln}
+              </p>
+            </div>
+            {/* EUR */}
+            <div className="rounded-lg border-2 border-dashed border-border bg-muted p-3">
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <span className="bg-foreground px-2 py-0.5 font-label-caps text-label-caps text-background">
+                  EUR
+                </span>
+                <CopyButton
+                  value={donationIbanEur}
+                  label={t(donateCopy.copy, lang)}
+                  copiedLabel={t(donateCopy.copied, lang)}
+                />
+              </div>
+              <p className="break-all font-mono text-sm leading-relaxed text-foreground sm:text-base">
+                {donationIbanEur}
+              </p>
+            </div>
           </div>
         </article>
 

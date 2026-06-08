@@ -19,6 +19,7 @@ export function OrgNameWordmark({ className, light }: OrgNameWordmarkProps) {
         src={brandAssets.nameCyrillic}
         alt=""
         fill
+        priority
         sizes="(min-width: 640px) 260px, min(100%, 220px)"
         className={cn(
           "org-name-cyrillic object-contain object-left",
@@ -29,6 +30,7 @@ export function OrgNameWordmark({ className, light }: OrgNameWordmarkProps) {
         src={brandAssets.nameLatin}
         alt=""
         fill
+        priority
         sizes="(min-width: 640px) 260px, min(100%, 220px)"
         className={cn(
           "org-name-latin object-contain object-left",

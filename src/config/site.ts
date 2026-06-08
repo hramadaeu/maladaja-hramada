@@ -25,15 +25,15 @@ export const navigation: NavItem[] = [
       pl: "Polityka",
     },
   },
-  // {
-  //   href: "/projects",
-  //   label: {
-  //     ru: "Проекты",
-  //     be: "Праекты",
-  //     en: "Projects",
-  //     pl: "Projekty",
-  //   },
-  // },
+  {
+    href: "/activities",
+    label: {
+      ru: "Что делаем",
+      be: "Што робім",
+      en: "Our work",
+      pl: "Co robimy",
+    },
+  },
 ];
 
 /** Donate CTA — scrolls to #donate on the homepage. */
@@ -48,5 +48,5 @@ export const donateCta = {
 } as const;
 
 export const externalLinks = {
-  email: "mailto:contact@example.com",
-} as const;
+  email: `mailto:${process.env.CONTACT_EMAIL ?? "contact@example.com"}`,
+};

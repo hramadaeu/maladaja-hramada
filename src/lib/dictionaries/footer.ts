@@ -14,4 +14,18 @@ export const footerCopy = {
     en: "Press Kit",
     pl: "Press kit",
   } satisfies Record<Locale, string>,
+
+  contact: {
+    ru: "Связаться",
+    be: "Звязацца",
+    en: "Contact us",
+    pl: "Skontaktuj się",
+  } satisfies Record<Locale, string>,
+
+  joinUs: {
+    ru: "Присоединиться",
+    be: "Далучыцца",
+    en: "Join us",
+    pl: "Dołącz",
+  } satisfies Record<Locale, string>,
 } as const;

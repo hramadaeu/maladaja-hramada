@@ -23,13 +23,7 @@ export function SiteHeader({ lang }: SiteHeaderProps) {
   return (
     <header className="bg-paper-white w-full border-b-2 border-ink-black z-50 relative">
       <div className="flex justify-between items-center px-4 md:px-16 py-4 max-w-container-max mx-auto">
-        <Link
-          href={`/${lang}`}
-          className="shrink-0 hover:opacity-90 transition-opacity"
-          aria-label="Maladaja Hramada — home"
-        >
-          <SiteLogo lang={lang} />
-        </Link>
+        <SiteLogo lang={lang} />
 
         <nav
           className="hidden md:flex items-center gap-1 font-button text-button uppercase"

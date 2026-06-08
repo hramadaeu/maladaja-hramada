@@ -9,10 +9,10 @@ export const policyCopy = {
     pl: "Polityka",
   } satisfies Record<Locale, string>,
   indexTitle: {
-    ru: "Политика организации",
-    be: "Палітыка арганізацыі",
-    en: "Organizational policy",
-    pl: "Polityka organizacji",
+    ru: "Политики организации",
+    be: "Палітыкі арганізацыі",
+    en: "Organizational policies",
+    pl: "Polityki organizacji",
   } satisfies Record<Locale, string>,
   indexIntro: {
     ru: "Документы, определяющие наше видение, ценности и позиции по ключевым вопросам.",
@@ -38,6 +38,12 @@ export const policyCopy = {
     en: "Main document",
     pl: "Dokument główny",
   } satisfies Record<Locale, string>,
+  inProgressLabel: {
+    ru: "В разработке",
+    be: "У распрацоўцы",
+    en: "In progress",
+    pl: "W przygotowaniu",
+  } satisfies Record<Locale, string>,
 } as const;
 
 export const policySubsections = [
@@ -51,52 +57,54 @@ export const policySubsections = [
       pl: "Wspólna wizja",
     } satisfies Record<Locale, string>,
     description: {
-      ru: "Стратегическое видение и принципы «Маладой Грамады».",
-      be: "Стратэгічнае бачэнне і прынцыпы «Маладой Грамады».",
+      ru: "Стратегическое видение и принципы Маладой Грамады.",
+      be: "Стратэгічнае бачэнне і прынцыпы Маладой Грамады.",
       en: "Strategic vision and principles of Maladaja Hramada.",
       pl: "Wizja strategiczna i zasady Młodej Hromady.",
     } satisfies Record<Locale, string>,
   },
   {
-    slug: policySlugs.lgbtqCivilPartnership,
+    slug: policySlugs.civilPartnership,
     featured: false,
     title: {
-      ru: "ЛГБТК+ и гражданское партнёрство",
-      be: "ЛГБТК+ і грамадзянскае партнёрства",
-      en: "LGBTQ+ and civil partnership",
-      pl: "LGBTQ+ i partnerstwo cywilne",
+      ru: "Институт гражданских партнёрств",
+      be: "Інстытут грамадзянскіх партнёрстваў",
+      en: "Civil Partnership Institution",
+      pl: "Instytucja związków partnerskich",
     } satisfies Record<Locale, string>,
     description: {
-      ru: "Позиция по правам ЛГБТК+ и гражданскому партнёрству.",
-      be: "Пазіцыя па правах ЛГБТК+ і грамадзянскім партнёрстве.",
-      en: "Our stance on LGBTQ+ rights and civil partnership.",
-      pl: "Nasze stanowisko w sprawie praw LGBTQ+ i partnerstwa cywilnego.",
+      ru: "Концепция, направленная на создание в Республике Беларусь института гражданских партнёрств.",
+      be: "Канцэпцыя, накіраваная на стварэнне ў Рэспубліцы Беларусь інстытута грамадзянскіх партнёрстваў.",
+      en: "A concept aimed at establishing the institution of civil partnerships in the Republic of Belarus.",
+      pl: "Koncepcja mająca na celu ustanowienie instytucji partnerstwa cywilnego w Republice Białorusi.",
     } satisfies Record<Locale, string>,
   },
   {
     slug: policySlugs.youthPolicy,
     featured: false,
+    disabled: true,
     title: {
       ru: "Молодёжная политика",
-      be: "Маладыя палітыка",
+      be: "Моладзевая палітыка",
       en: "Youth policy",
       pl: "Polityka młodzieżowa",
     } satisfies Record<Locale, string>,
     description: {
-      ru: "Приоритеты и инициативы в сфере молодёжной политики.",
-      be: "Прыярытэты і ініцыятывы ў сферы маладыя палітыкі.",
-      en: "Priorities and initiatives in youth policy.",
-      pl: "Priorytety i inicjatywy w polityce młodzieżowej.",
+      ru: "Настоящий концепт Стратегии развития молодёжной политики является комплексным документом, который отражает систему взглядов и подходов демократического гражданского общества по совершенствованию условий для эффективного участия молодёжи в политическом, социальном, экономическом и культурном развитии Республики Беларусь.",
+      be: "Канцэпт Стратэгіі развіцця моладзевай палітыкі з'яўляецца комплексным дакументам, якая адлюстроўвае сістэму поглядаў і падыходаў дэмакратычнай грамадзянскай супольнасці па ўдасканаленні ўмоў для эфектыўнага ўдзелу моладзі ў палітычным, сацыяльным, эканамічным і культурным развіцці Рэспублікі Беларусь.",
+      en: "This concept of the Youth Policy Development Strategy is a comprehensive document that reflects the system of views and approaches of the democratic civil society to improving conditions for effective youth participation in the political, social, economic, and cultural development of the Republic of Belarus.",
+      pl: "Koncepcja Strategii Rozwoju Polityki Młodzieżowej jest dokumentem kompleksowym, który odzwierciedla system poglądów i podejść demokratycznego społeczeństwa obywatelskiego w zakresie poprawy warunków efektywnego udziału młodzieży w rozwoju politycznym, społecznym, gospodarczym i kulturalnym Republiki Białoruś.",
     } satisfies Record<Locale, string>,
   },
   {
     slug: policySlugs.postUni,
     featured: false,
+    disabled: true,
     title: {
       ru: "Отработки после ВНУ",
       be: "Адпрацоўкі пасля ВНУ",
-      en: "Post-UNI developments",
-      pl: "Opracowania po UNI",
+      en: "After graduate work",
+      pl: "Opracowania po universyteckie",
     } satisfies Record<Locale, string>,
     description: {
       ru: "Позиции и документы, подготовленные после Всебеларускага народнага ўзходу.",
@@ -107,17 +115,11 @@ export const policySubsections = [
   },
 ] as const;
 
-export const lgbtqPageCopy = {
-  lgbtqHeading: {
-    ru: "Политика в отношении ЛГБТК+",
-    be: "Палітыка ў адносінах ЛГБТК+",
-    en: "LGBTQ+ policy",
-    pl: "Polityka LGBTQ+",
-  } satisfies Record<Locale, string>,
-  civilPartnershipHeading: {
-    ru: "Гражданское партнёрство",
-    be: "Грамадзянскае партнёрства",
-    en: "Civil partnership",
-    pl: "Partnerstwo cywilne",
+export const civilPartnershipPageCopy = {
+  fullVersionLink: {
+    ru: "Полная версия документа",
+    be: "Поўная версія дакумента",
+    en: "Full version of the document",
+    pl: "Pełna wersja dokumentu",
   } satisfies Record<Locale, string>,
 } as const;

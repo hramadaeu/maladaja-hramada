@@ -2,7 +2,9 @@
 export function getSiteLinks() {
   return {
     joinFormUrl: process.env.JOIN_FORM_URL ?? "",
-    donationIban: process.env.DONATION_IBAN ?? "",
+    donationIbanPln: process.env.DONATION_IBAN_PLN ?? "",
+    donationIbanEur: process.env.DONATION_IBAN_EUR ?? "",
+    pressKitUrl: process.env.PRESS_KIT_URL ?? "",
     donationBuyMeACoffeeUrl: process.env.DONATION_BUYMEACOFFEE_URL ?? "",
     donationWallets: {
       btc: process.env.DONATION_BTC_ADDRESS ?? "",

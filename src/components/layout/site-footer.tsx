@@ -8,7 +8,8 @@ import {
 
 import { OrgNameWordmark } from "@/components/brand/org-name-wordmark";
 import { footerCopy } from "@/lib/dictionaries/footer";
-import { navigation } from "@/config/site";
+import { navigation, externalLinks } from "@/config/site";
+import { getSiteLinks } from "@/config/site-links";
 import type { Locale } from "@/config/i18n";
 
 const socialLinks = [
@@ -40,6 +41,7 @@ type SiteFooterProps = {
 
 export function SiteFooter({ lang }: SiteFooterProps) {
   const locale = lang as Locale;
+  const links = getSiteLinks();
 
   return (
     <footer className="bg-ink-black w-full border-t-8 border-proletarian-red">
@@ -63,11 +65,27 @@ export function SiteFooter({ lang }: SiteFooterProps) {
             </Link>
           ))}
           <Link
-            href="#"
+            href={links.pressKitUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-paper-white/70 hover:text-paper-white hover:underline decoration-proletarian-red decoration-2 transition-opacity duration-200"
           >
             {footerCopy.pressKit[locale]}
           </Link>
+          <a
+            href={externalLinks.email}
+            className="text-paper-white/70 hover:text-paper-white hover:underline decoration-proletarian-red decoration-2 transition-opacity duration-200"
+          >
+            {footerCopy.contact[locale]}
+          </a>
+          <a
+            href={links.joinFormUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-paper-white/70 hover:text-paper-white hover:underline decoration-proletarian-red decoration-2 transition-opacity duration-200"
+          >
+            {footerCopy.joinUs[locale]}
+          </a>
         </div>
 
         <div className="flex items-center gap-3 mb-6 md:mb-0">

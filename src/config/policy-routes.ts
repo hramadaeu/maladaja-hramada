@@ -1,7 +1,7 @@
 /** Policy section URL segments (after `/[lang]/policy/`). */
 export const policySlugs = {
   commonVision: "common-vision",
-  lgbtqCivilPartnership: "lgbtq-civil-partnership",
+  civilPartnership: "civil-partnership",
   youthPolicy: "youth-policy",
   postUni: "post-uni",
 } as const;
