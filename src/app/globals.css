@@ -157,3 +157,15 @@
     opacity: 0;
   }
 }
+
+.rose-watermark {
+  background-image: url(/brand/logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dark .rose-watermark {
+  background-image: url(/brand/rose-sharp-black.svg);
+  filter: brightness(0) invert(.85);
+}

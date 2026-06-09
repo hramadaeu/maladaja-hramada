@@ -15,11 +15,6 @@ export const activitiesPageCopy = {
   } satisfies Record<Locale, string>,
 } as const;
 
-export const activityExternalUrls = {
-  signPetition: "https://www.change.org",
-  contributeNow: "https://bysol.org",
-} as const;
-
 export const activitiesCopy = {
   viewAll: {
     be: "Усе",
@@ -57,8 +52,8 @@ export const activitiesCopy = {
   } satisfies Record<Locale, string>,
 
   teaserTitle: {
-    be: "Апошнія",
-    ru: "Последние",
+    be: "Апошняе",
+    ru: "Последнее",
     en: "Latest",
     pl: "Najnowsze",
   } satisfies Record<Locale, string>,
@@ -77,6 +72,7 @@ export const activitiesCopy = {
     pl: "Podpisów",
   } satisfies Record<Locale, string>,
 
+  /** @deprecated Migrated to Payload Activity collection. */
   items: [
     {
       id: "campaign-1",
@@ -89,6 +85,8 @@ export const activitiesCopy = {
         en: "Protestors holding signs",
         pl: "Protestujący z transparentami",
       } satisfies Record<Locale, string>,
+      badge: "urgent" as const,
+      progress: { current: 7500, max: 10000 },
       title: {
         be: "Абаранім правы студэнтаў",
         ru: "Защитим права студентов",
@@ -101,12 +99,16 @@ export const activitiesCopy = {
         en: "Mobilizing across universities to protest the recent tuition hikes and demand transparent funding allocation. Join the strike next Friday.",
         pl: "Mobilizujemy środowiska uniwersyteckie przeciwko ostatnim podwyżkom czesnego i domagamy się przejrzystego przydziału funduszy. Dołącz do strajku w najbliższy piątek.",
       } satisfies Record<Locale, string>,
-      signCta: {
-        be: "Падпісаць петыцыю",
-        ru: "Подписать петицию",
-        en: "Sign Petition",
-        pl: "Podpisz petycję",
-      } satisfies Record<Locale, string>,
+      cta: {
+        type: "external" as const,
+        href: "https://www.change.org",
+        label: {
+          be: "Падпісаць петыцыю",
+          ru: "Подписать петицию",
+          en: "Sign Petition",
+          pl: "Podpisz petycję",
+        } satisfies Record<Locale, string>,
+      },
     },
     {
       id: "campaign-2",
@@ -137,11 +139,23 @@ export const activitiesCopy = {
         en: ["Labor", "Solidarity"],
         pl: ["Praca", "Solidarność"],
       } satisfies Record<Locale, readonly string[]>,
+      cta: {
+        type: "internal" as const,
+        href: "workers-union-solidarity",
+        label: {
+          be: "Падрабязней",
+          ru: "Подробнее",
+          en: "Read More",
+          pl: "Czytaj dalej",
+        } satisfies Record<Locale, string>,
+      },
     },
     {
       id: "campaign-3",
       slug: "mutual-aid-network",
       type: "campaign" as const,
+      variant: "solid" as const,
+      badge: "ongoing" as const,
       title: {
         be: "Сетка ўзаемадапамогі",
         ru: "Сеть взаимопомощи",
@@ -154,12 +168,16 @@ export const activitiesCopy = {
         en: "Our community defense fund provides direct support to activists facing legal fees and workers striking for better conditions. Solidarity is our weapon.",
         pl: "Nasz fundusz obrony społecznej zapewnia bezpośrednie wsparcie aktywistom mierzącym się z kosztami prawnymi oraz strajkującym pracownikom. Solidarność jest naszą bronią.",
       } satisfies Record<Locale, string>,
-      contributeCta: {
-        be: "Падтрымаць",
-        ru: "Поддержать",
-        en: "Contribute Now",
-        pl: "Wesprzyj",
-      } satisfies Record<Locale, string>,
+      cta: {
+        type: "external" as const,
+        href: "https://bysol.org",
+        label: {
+          be: "Падтрымаць",
+          ru: "Поддержать",
+          en: "Contribute Now",
+          pl: "Wesprzyj",
+        } satisfies Record<Locale, string>,
+      },
     },
     {
       id: "project-1",
@@ -186,25 +204,26 @@ export const activitiesCopy = {
     },
     {
       id: "project-2",
-      slug: "media-lab",
+      slug: "what-is-social-democracy",
       type: "project" as const,
+      youtubePlaylistId: "PLLvxC2iMTjztnAvtoNlsdTrvRwdMio-kH",
       date: {
-        be: "Новы сезон",
-        ru: "Новый сезон",
-        en: "New season",
-        pl: "Nowy sezon",
+        be: "Адукацыйны праект",
+        ru: "Образовательный проект",
+        en: "Educational project",
+        pl: "Projekt edukacyjny",
       } satisfies Record<Locale, string>,
       title: {
-        be: "Медыя-лабараторыя",
-        ru: "Медиа-лаборатория",
-        en: "Media lab",
-        pl: "Laboratorium mediów",
+        be: "Што такое сацыял-дэмакратыя?",
+        ru: "Что такое социал-демократия?",
+        en: "What is Social Democracy?",
+        pl: "Czym jest socjaldemokracja?",
       } satisfies Record<Locale, string>,
       description: {
-        be: "Стварэнне падкастаў, візуальнага кантэнту і інструментаў для маладых кампаній.",
-        ru: "Создание подкастов, визуального контента и инструментов для молодёжных кампаний.",
-        en: "Podcasts, visual content, and tools for youth-led campaigns.",
-        pl: "Podcasty, treści wizualne i narzędzia dla kampanii młodzieżowych.",
+        be: "Плэйліст з відэа, якія тлумачаць асновы сацыял-дэмакратыі, яе гісторыю, каштоўнасці і сучасныя падыходы.",
+        ru: "Плейлист с видео, объясняющих основы социал-демократии, её историю, ценности и современные подходы.",
+        en: "A YouTube playlist explaining the fundamentals of social democracy — its history, values, and modern approaches.",
+        pl: "Playlista wyjaśniająca podstawy socjaldemokracji — jej historię, wartości i współczesne podejścia.",
       } satisfies Record<Locale, string>,
     },
   ],

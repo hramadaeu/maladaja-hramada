@@ -25,3 +25,10 @@ src/
   config/         # i18n, site config, navigation
 middleware.ts     # Locale detection and redirects
 ```
+
+## Documentation
+
+- [`SECURITY.md`](./SECURITY.md) — vulnerability disclosure policy,
+  known security issues, and the security roadmap.
+- [`TODO.md`](./TODO.md) — the active backlog of work (animations,
+  database migration, content, etc.).

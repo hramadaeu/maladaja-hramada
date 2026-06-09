@@ -69,8 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    news: News;
-    projects: Project;
+    activity: Activity;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,8 +79,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    news: NewsSelect<false> | NewsSelect<true>;
-    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    activity: ActivitySelect<false> | ActivitySelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -96,12 +94,8 @@ export interface Config {
     | null
     | ('be' | 'en' | 'pl' | 'ru')
     | ('be' | 'en' | 'pl' | 'ru')[];
-  globals: {
-    'global-settings': GlobalSetting;
-  };
-  globalsSelect: {
-    'global-settings': GlobalSettingsSelect<false> | GlobalSettingsSelect<true>;
-  };
+  globals: {};
+  globalsSelect: {};
   locale: 'be' | 'en' | 'pl' | 'ru';
   widgets: {
     collections: CollectionsWidget;
@@ -136,6 +130,10 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  /**
+   * Admins can manage users. Editors can manage content only.
+   */
+  role: 'admin' | 'editor';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -161,7 +159,10 @@ export interface User {
  */
 export interface Media {
   id: number;
-  alt?: string | null;
+  /**
+   * Required for accessibility (screen readers).
+   */
+  alt: string;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -176,41 +177,35 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news".
+ * via the `definition` "activity".
  */
-export interface News {
+export interface Activity {
   id: number;
-  title: string;
-  slug: string;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  publishedDate?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects".
- */
-export interface Project {
-  id: number;
+  type: 'campaign' | 'project';
   title: string;
   slug: string;
   description?: string | null;
   image?: (number | null) | Media;
+  alt?: string | null;
+  badge?: ('urgent' | 'ongoing') | null;
+  variant?: ('solid' | 'card') | null;
+  progress?: {
+    current?: number | null;
+    max?: number | null;
+  };
+  tags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  cta?: {
+    type?: ('external' | 'internal') | null;
+    href?: string | null;
+    label?: string | null;
+  };
+  date?: string | null;
+  youtubePlaylistId?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -247,12 +242,8 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'news';
-        value: number | News;
-      } | null)
-    | ({
-        relationTo: 'projects';
-        value: number | Project;
+        relationTo: 'activity';
+        value: number | Activity;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -301,6 +292,7 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -338,25 +330,38 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news_select".
+ * via the `definition` "activity_select".
  */
-export interface NewsSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  content?: T;
-  publishedDate?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects_select".
- */
-export interface ProjectsSelect<T extends boolean = true> {
+export interface ActivitySelect<T extends boolean = true> {
+  type?: T;
   title?: T;
   slug?: T;
   description?: T;
   image?: T;
+  alt?: T;
+  badge?: T;
+  variant?: T;
+  progress?:
+    | T
+    | {
+        current?: T;
+        max?: T;
+      };
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  cta?:
+    | T
+    | {
+        type?: T;
+        href?: T;
+        label?: T;
+      };
+  date?: T;
+  youtubePlaylistId?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -399,24 +404,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "global-settings".
- */
-export interface GlobalSetting {
-  id: number;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "global-settings_select".
- */
-export interface GlobalSettingsSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

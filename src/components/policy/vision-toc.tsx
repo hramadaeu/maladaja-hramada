@@ -24,7 +24,7 @@ export function VisionTOC({
     <>
       {/* Mobile: details dropdown */}
       <details
-        className="md:hidden brutal-border bg-paper-white"
+        className="md:hidden brutal-border bg-background"
         open={isMobileOpen}
         onToggle={(e) => setIsMobileOpen((e.target as HTMLDetailsElement).open)}
       >
@@ -43,7 +43,7 @@ export function VisionTOC({
                 setIsMobileOpen(false);
               }}
               className={cn(
-                "w-full text-left px-3 py-2 font-body-md text-body-md hover:bg-concrete-gray transition-colors duration-100 cursor-pointer",
+                "w-full text-left px-3 py-2 font-body-md text-body-md hover:bg-muted transition-colors duration-100 cursor-pointer",
                 activeSection === section.number
                   ? "text-proletarian-red font-bold"
                   : "text-foreground/70",

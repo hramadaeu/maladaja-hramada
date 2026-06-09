@@ -32,10 +32,10 @@ export function DonateSectionClient({
   const { donationIbanPln, donationIbanEur, donationBuyMeACoffeeUrl } = links;
 
   return (
-    <section id="donate" className="py-16 md:py-16">
+    <section id="donate" className="pt-10 pb-16 md:pt-10 md:pb-16">
       <div className="mx-auto max-w-container-max px-4 md:px-16">
         {/* Section header */}
-        <div className="mx-auto mb-12 md:mb-16">
+        <div className="mx-auto mb-8 md:mb-10">
           <h2 className="font-headline text-headline-lg uppercase text-foreground">
             {t(donateCopy.title, lang)}
           </h2>

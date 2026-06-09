@@ -44,6 +44,12 @@ export const policyCopy = {
     en: "In progress",
     pl: "W przygotowaniu",
   } satisfies Record<Locale, string>,
+  contentsLabel: {
+    ru: "Содержание",
+    be: "Змест",
+    en: "Contents",
+    pl: "Spis treści",
+  } satisfies Record<Locale, string>,
 } as const;
 
 export const policySubsections = [

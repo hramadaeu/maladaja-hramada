@@ -1,23 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, HeartHandshake } from "lucide-react";
+import { ArrowLeft, HeartHandshake, Play } from "lucide-react";
 
-import { activitiesCopy, activityExternalUrls } from "@/lib/dictionaries/activities";
-import { pickLocalized, t } from "@/lib/translate";
+import type { ActivityItem } from "@/lib/activities.server";
+import { activitiesCopy } from "@/lib/dictionaries/activities";
+import { t } from "@/lib/translate";
 
 type ActivityDetailProps = {
   lang: string;
-  item: (typeof activitiesCopy.items)[number];
+  item: ActivityItem;
 };
 
 export function ActivityDetail({ lang, item }: ActivityDetailProps) {
-  const isCampaign = item.type === "campaign";
-  const isCard1 = item.id === "campaign-1";
-  const isCard2 = item.id === "campaign-2";
-  const isCard3 = item.id === "campaign-3";
-
-  const showImage = isCard1 || (isCard2 && item.imageSrc);
-
   return (
     <article className="py-12 px-4 md:px-16 max-w-container-max mx-auto">
       <Link
@@ -30,22 +24,22 @@ export function ActivityDetail({ lang, item }: ActivityDetailProps) {
 
       <header className="mt-6 border-b-2 border-border pb-8">
         <div className="inline-block bg-foreground text-background font-label-caps text-label-caps px-2 py-1 mb-4">
-          {isCampaign
+          {item.type === "campaign"
             ? t(activitiesCopy.campaignBadge, lang)
             : t(activitiesCopy.projectBadge, lang)}
         </div>
         <h1 className="font-headline text-headline-lg uppercase text-foreground">
-          {t(item.title, lang)}
+          {item.title}
         </h1>
       </header>
 
-      {showImage ? (
+      {item.imageSrc ? (
         <div className="mt-8 h-64 md:h-96 w-full relative overflow-hidden brutal-border">
           <Image
-            alt={t(item.alt!, lang)}
+            alt={item.imageAlt ?? ""}
             fill
             className="object-cover grayscale"
-            src={item.imageSrc!}
+            src={item.imageSrc}
             sizes="(min-width: 768px) 768px, 100vw"
           />
         </div>
@@ -53,31 +47,59 @@ export function ActivityDetail({ lang, item }: ActivityDetailProps) {
 
       <div className="mt-10">
         <p className="font-body-lg text-body-lg text-foreground/80 max-w-3xl">
-          {t(item.description, lang)}
+          {item.description}
         </p>
 
-        {isCard1 ? (
-          <div className="mt-10">
-            <div className="w-full h-4 bg-concrete-gray brutal-border mb-4 max-w-md">
-              <div className="h-full bg-proletarian-red" style={{ width: "75%" }} />
+        {item.youtubePlaylistId ? (
+          <div className="mt-10 max-w-3xl">
+            <div className="relative brutal-border overflow-hidden">
+              <iframe
+                src={`https://www.youtube.com/embed/videoseries?list=${item.youtubePlaylistId}`}
+                title={item.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full aspect-video"
+              />
             </div>
-            <p className="font-label-caps text-label-caps text-foreground/60 mb-8">
-              7,500 / 10,000 {t(activitiesCopy.signaturesLabel, lang)}
-            </p>
             <a
-              href={activityExternalUrls.signPetition}
+              href={`https://www.youtube.com/playlist?list=${item.youtubePlaylistId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-proletarian-red text-paper-white font-button text-button uppercase px-6 py-3 brutal-border hover:bg-foreground hover:text-background transition-colors duration-100"
+              className="inline-flex items-center gap-2 mt-4 font-button text-button uppercase text-proletarian-red hover:underline decoration-2 underline-offset-4"
             >
-              {t(item.signCta!, lang)}
+              <Play className="size-4" />
+              {t(activitiesCopy.readMoreCta, lang)}
             </a>
           </div>
         ) : null}
 
-        {isCard2 ? (
+        {item.progress ? (
+          <div className="mt-10">
+            <div className="w-full h-4 bg-concrete-gray brutal-border mb-4 max-w-md">
+              <div
+                className="h-full bg-proletarian-red"
+                style={{ width: `${(item.progress.current / item.progress.max) * 100}%` }}
+              />
+            </div>
+            <p className="font-label-caps text-label-caps text-foreground/60 mb-8">
+              {item.progress.current.toLocaleString()} / {item.progress.max.toLocaleString()} {t(activitiesCopy.signaturesLabel, lang)}
+            </p>
+            {item.cta ? (
+              <a
+                href={item.cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-proletarian-red text-paper-white font-button text-button uppercase px-6 py-3 brutal-border hover:bg-foreground hover:text-background transition-colors duration-100"
+              >
+                {item.cta.label}
+              </a>
+            ) : null}
+          </div>
+        ) : null}
+
+        {item.tags ? (
           <div className="mt-8 flex flex-wrap gap-2">
-            {pickLocalized(item.tags!, lang).map((tag) => (
+            {item.tags.map((tag) => (
               <span
                 key={tag}
                 className="bg-foreground text-background font-label-caps text-label-caps px-2 py-1"
@@ -88,23 +110,23 @@ export function ActivityDetail({ lang, item }: ActivityDetailProps) {
           </div>
         ) : null}
 
-        {isCard3 ? (
+        {item.variant === "solid" && item.cta ? (
           <div className="mt-10">
             <HeartHandshake className="size-12 mb-4 text-proletarian-red" />
             <a
-              href={activityExternalUrls.contributeNow}
+              href={item.cta.href}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-proletarian-red text-paper-white font-button text-button uppercase px-6 py-3 brutal-border hover:bg-foreground hover:text-background transition-colors duration-100"
             >
-              {t(item.contributeCta!, lang)}
+              {item.cta.label}
             </a>
           </div>
         ) : null}
 
-        {item.type === "project" ? (
+        {item.date ? (
           <p className="font-label-caps text-label-caps text-foreground/60 mt-8">
-            {t(item.date, lang)}
+            {item.date}
           </p>
         ) : null}
       </div>

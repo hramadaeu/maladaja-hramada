@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { defaultLocale, isValidLocale } from "@/config/i18n";
 
 const LOCALE_COOKIE = "NEXT_LOCALE";
+const isProd = process.env.NODE_ENV === "production";
 
 function getPreferredLocale(request: NextRequest): string {
   const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
@@ -25,6 +26,19 @@ function getPreferredLocale(request: NextRequest): string {
   return defaultLocale;
 }
 
+function setLocaleCookie(response: NextResponse, locale: string) {
+  response.cookies.set(LOCALE_COOKIE, locale, {
+    path: "/",
+    // httpOnly is intentionally false: the layout reads this cookie on the
+    // server to set <html lang> from the client's persisted preference.
+    // We still harden with `secure` and `sameSite` to limit CSRF/exfiltration.
+    httpOnly: false,
+    sameSite: "lax",
+    secure: isProd,
+  });
+  return response;
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -39,18 +53,14 @@ export function middleware(request: NextRequest) {
 
   const pathnameLocale = pathname.split("/")[1];
   if (isValidLocale(pathnameLocale)) {
-    const response = NextResponse.next();
-    response.cookies.set(LOCALE_COOKIE, pathnameLocale, { path: "/" });
-    return response;
+    return setLocaleCookie(NextResponse.next(), pathnameLocale);
   }
 
   const locale = getPreferredLocale(request);
   const url = request.nextUrl.clone();
   url.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;
 
-  const response = NextResponse.redirect(url);
-  response.cookies.set(LOCALE_COOKIE, locale, { path: "/" });
-  return response;
+  return setLocaleCookie(NextResponse.redirect(url), locale);
 }
 
 export const config = {

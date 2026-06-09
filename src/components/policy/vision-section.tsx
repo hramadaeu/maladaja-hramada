@@ -24,10 +24,10 @@ export function VisionSection({
   const sectionId = `section-${section.number}`;
 
   return (
-    <div id={sectionId} className="brutal-border bg-paper-white">
+    <div id={sectionId} className="brutal-border bg-background">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between px-6 py-5 text-left cursor-pointer hover:bg-concrete-gray transition-colors duration-100"
+        className="w-full flex items-center justify-between px-6 py-5 text-left cursor-pointer hover:bg-muted transition-colors duration-100"
       >
         <div className="flex items-center gap-4">
           <span className="font-headline text-headline-xl text-foreground/10 leading-none shrink-0">

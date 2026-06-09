@@ -25,7 +25,11 @@ export function HomeSection({ lang }: HomeSectionProps) {
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpiUpWxXKuxpPA8eXvKL90zZ2xJVKlYZ8syIQ87YgsPF2tmxKto2n8NxmsIAxGtOUFSoV4txswaobN3y4PldBBV200u8NJpy9uvGZ_Yz5lxJBtAOqS8zBLJmLOjdY7aNAyqA7m3jo_NjJ2RrQ9i1kyTQ5R2kkc_i3agnkWUav4ViLDGOMsv9KWyPwMLxl6atWvzznfhyVwBKlnEyLXNhf07v3IPX6G33TQFG4UZDqRA75Sy0fVjg2jhj2QYRStWPhUo-VL9cBjcjUk"
         />
       </div>
-      <div className="relative z-10 max-w-container-max mx-auto px-4 md:px-16 pt-14 pb-16 w-full">
+      <div
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 w-[950px] h-[950px] opacity-30 -rotate-[20deg] pointer-events-none select-none hidden md:block rose-watermark"
+        aria-hidden
+      />
+      <div className="relative max-w-container-max mx-auto px-4 md:px-16 pt-14 pb-16 w-full">
         <div className="max-w-4xl">
           <div className="inline-block bg-foreground text-background font-label-caps text-label-caps px-2 py-1 mb-6">
             {t(homeSectionCopy.eyebrow, lang)}

@@ -7,6 +7,7 @@ import {
   RosesSeparator,
 } from "@/components/sections";
 import { ActivitiesSection } from "@/components/sections/activities";
+import { getActivities } from "@/lib/activities.server";
 import { notFound } from "next/navigation";
 
 type HomePageProps = {
@@ -26,6 +27,9 @@ export default async function HomePage({ params }: HomePageProps) {
     notFound();
   }
 
+  const allItems = await getActivities(lang);
+  const teaserItems = allItems.slice(0, 3);
+
   return (
     <div className="flex flex-col">
         {/* Full-width hero breakout */}
@@ -33,7 +37,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <HomeSection lang={lang} />
         </div>
 
-      <ActivitiesSection lang={lang} teaser />
+      <ActivitiesSection lang={lang} teaser items={teaserItems} />
       <RosesSeparator />
       <DonateSection lang={lang} />
     </div>
