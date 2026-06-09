@@ -137,24 +137,19 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // All other routes — standard CSP.
+      // All other routes — standard CSP + bfcache-friendly Cache-Control.
+      // Next.js 16 defaults to Cache-Control: private,no-cache,no-store for
+      // dynamic pages, which blocks back/forward cache. We override it here
+      // to remove `no-store` so browsers can preserve the page in bfcache.
       {
-        source: "/:path*",
+        source: "/:path((?!admin).*)",
         headers: [
           ...securityHeaders,
           { key: "Content-Security-Policy", value: csp },
+          { key: "Cache-Control", value: "private, no-cache, max-age=0, must-revalidate, no-transform" },
         ],
       },
     ];
-  },
-  webpack: (webpackConfig) => {
-    webpackConfig.resolve.extensionAlias = {
-      ".cjs": [".cts", ".cjs"],
-      ".js": [".ts", ".tsx", ".js", ".jsx"],
-      ".mjs": [".mts", ".mjs"],
-    };
-
-    return webpackConfig;
   },
   turbopack: {
     root: path.resolve(dirname),

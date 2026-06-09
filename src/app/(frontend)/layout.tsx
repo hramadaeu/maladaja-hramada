@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { headerCopy } from "@/lib/dictionaries/header";
+import { t } from "@/lib/translate";
 
 import "../globals.css";
 
@@ -11,16 +13,19 @@ const russoOne = Russo_One({
   variable: "--font-russo-one",
   subsets: ["cyrillic", "latin"],
   weight: "400",
+  display: "optional",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["cyrillic", "latin"],
+  display: "optional",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["cyrillic", "latin"],
+  display: "optional",
 });
 
 export default async function FrontendLayout({
@@ -59,7 +64,7 @@ export default async function FrontendLayout({
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-background focus:text-foreground focus:px-4 focus:py-2 focus:brutal-border"
         >
-          Skip to main content
+          {t(headerCopy.skipToContent, lang)}
         </a>
         <ThemeProvider>
           {children}

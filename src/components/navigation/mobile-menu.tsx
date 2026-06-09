@@ -68,12 +68,12 @@ export function MobileMenu({ lang }: MobileMenuProps) {
         {/* Scrollable menu body */}
         <nav
           className="flex min-h-0 flex-1 flex-col divide-y-2 divide-ink-black overflow-y-auto"
-          aria-label="Mobile"
+          aria-label={t(mobileMenuCopy.navMobile, lang)}
         >
           {/* Language switcher */}
           <div className="flex flex-col gap-3 px-4 py-5">
             <span className="font-label-caps text-label-caps text-ink-black/60">
-              {t(mobileMenuCopy.openLabel, lang) === "Menu" ? "Language" : "Язык"}
+              {t(mobileMenuCopy.languageLabel, lang)}
             </span>
             <LanguageSwitcher currentLang={lang} />
           </div>

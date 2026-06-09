@@ -3,6 +3,8 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 
 import { OrgNameWordmark } from "@/components/brand/org-name-wordmark";
+import { notFoundCopy } from "@/lib/dictionaries/not-found";
+import { t } from "@/lib/translate";
 
 export const metadata: Metadata = {
   title: "404",
@@ -35,23 +37,23 @@ export default async function NotFound() {
             404
           </h1>
           <p className="font-headline text-headline-md text-foreground mt-4 mb-2 uppercase">
-            This page was politically repressed
+            {t(notFoundCopy.title, lang)}
           </p>
           <p className="font-body text-body-md text-foreground/60 mb-8">
-            Let&apos;s get you back on track.
+            {t(notFoundCopy.subtitle, lang)}
           </p>
           <Link
             href={`/${lang}`}
             className="inline-block border-2 border-transparent bg-proletarian-red px-8 py-4 font-button text-button uppercase text-paper-white brutal-shadow transition-all duration-100 hover:border-ink-black"
           >
-            Go home
+            {t(notFoundCopy.cta, lang)}
           </Link>
         </div>
       </main>
 
       <footer className="w-full border-t-2 border-ink-black bg-ink-black px-4 py-4 text-center md:px-16">
         <p className="font-label-caps text-label-caps text-paper-white/60">
-          &copy; {new Date().getFullYear()} Maladaja Hramada
+          &copy; {new Date().getFullYear()} {t(notFoundCopy.copyright, lang)}
         </p>
       </footer>
     </div>

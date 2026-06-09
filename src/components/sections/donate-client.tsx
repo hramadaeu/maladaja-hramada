@@ -146,7 +146,7 @@ export function DonateSectionClient({
                   </Button>
                 }
               />
-              <DialogContent className="sm:max-w-lg">
+              <DialogContent className="sm:max-w-lg" closeLabel={t(donateCopy.closeModal, lang)}>
                 <DialogHeader>
                   <DialogTitle>{t(donateCopy.cryptoDialogTitle, lang)}</DialogTitle>
                   <DialogDescription>
@@ -169,7 +169,7 @@ export function DonateSectionClient({
                             __html: qrCodes[wallet.id] ?? "",
                           }}
                           role="img"
-                          aria-label={`${wallet.label} wallet address QR code`}
+                          aria-label={`${t(donateCopy.qrCodeAriaPrefix, lang)} ${wallet.label}`}
                         />
                         <p className="text-xs font-medium text-foreground">
                           {wallet.label}

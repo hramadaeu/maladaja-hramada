@@ -46,6 +46,7 @@ function DialogContent({
   ...props
 }: DialogPrimitive.Popup.Props & {
   showCloseButton?: boolean
+  closeLabel?: string
 }) {
   return (
     <DialogPortal>
@@ -72,7 +73,7 @@ function DialogContent({
           >
             <XIcon
             />
-            <span className="sr-only">Close</span>
+            <span className="sr-only">{props.closeLabel ?? "Close"}</span>
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Popup>
@@ -97,6 +98,7 @@ function DialogFooter({
   ...props
 }: React.ComponentProps<"div"> & {
   showCloseButton?: boolean
+  closeLabel?: string
 }) {
   return (
     <div
@@ -109,9 +111,9 @@ function DialogFooter({
     >
       {children}
       {showCloseButton && (
-        <DialogPrimitive.Close render={<Button variant="outline" />}>
-          Close
-        </DialogPrimitive.Close>
+          <DialogPrimitive.Close render={<Button variant="outline" />}>
+            {props.closeLabel ?? "Close"}
+          </DialogPrimitive.Close>
       )}
     </div>
   )

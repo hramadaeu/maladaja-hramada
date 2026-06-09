@@ -3,13 +3,16 @@
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ui/theme-provider";
+import { mobileMenuCopy } from "@/lib/dictionaries/header";
+import { t } from "@/lib/translate";
 import { cn } from "@/lib/utils";
 
 type ThemeToggleProps = {
   className?: string;
+  lang?: string;
 };
 
-export function ThemeToggle({ className }: ThemeToggleProps) {
+export function ThemeToggle({ className, lang }: ThemeToggleProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -37,7 +40,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         "relative inline-flex size-8 items-center justify-center rounded-md text-ink-black transition-all duration-100 hover:text-proletarian-red hover:bg-concrete-gray active:translate-x-0.5 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer",
         className
       )}
-      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      aria-label={isDark ? t(mobileMenuCopy.themeLight, lang ?? "en") : t(mobileMenuCopy.themeDark, lang ?? "en")}
     >
       <span className="relative flex size-4 items-center justify-center">
         <Sun className={cn(

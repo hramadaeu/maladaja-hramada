@@ -64,69 +64,21 @@ block, or use Tailwind's `motion-safe:` / `motion-reduce:` variants.
 
 ---
 
-## 2. ✅ Database / Payload content migration — `🔴 High`
+## 2. 🔴 Database / Payload content migration — `🔴 High`
 
 **Status:** Unified `Activity` collection created, registered in config,
-server adapter + frontend switchover done. Seed script written at
-`scripts/seed-activities.ts`. Static `activitiesCopy.items` kept as
-fallback (marked `@deprecated`). Run `npx tsx scripts/seed-activities.ts`
-against a running Payload server to populate the database.
-
-### What was done
-
-| File | Status |
-| ---- | ------ |
-| `src/collections/Activity.ts` | ✅ Created (unified, replaces separate Campaigns + Projects) |
-| `payload.config.ts` | ✅ Activity registered in collections |
-| `src/lib/activities.server.ts` | ✅ `ActivityItem` type + `getActivities()` / `getActivityBySlug()` |
-| `src/lib/dictionaries/activities.ts` | ✅ `items` marked `@deprecated`, kept as fallback |
-| `src/components/sections/activities.tsx` | ✅ Accepts `items` prop, uses `ActivityItem` type |
-| `src/components/sections/activity-detail.tsx` | ✅ Uses `ActivityItem` type, no `"prop" in item` checks |
-| Page files (activities listing, detail, homepage) | ✅ Fetch via `getActivities(lang)` |
-| `scripts/seed-activities.ts` | ✅ Idempotent, image upload + locale fill |
-| `tsconfig.json` | ✅ Excluded `scripts/` from build |
-
-### Activity collection fields
-
-| Field | Type | Localized | Required |
-| ----- | ---- | --------- | -------- |
-| `type` | select: `campaign` \| `project` | — | ✅ |
-| `title` | text | ✅ | ✅ |
-| `slug` | text | ✅ | ✅ (unique) |
-| `description` | textarea | ✅ | — |
-| `image` | upload → media | ✅ | — |
-| `alt` | text | ✅ | — |
-| `badge` | select: `urgent` \| `ongoing` | — | — |
-| `variant` | select: `solid` \| `card` | — | — |
-| `progress` | group: `{current, max}` | — | — |
-| `tags` | array of text | ✅ | — |
-| `cta` | group: `{type, href, label}` | label only | — |
-| `date` | text | ✅ | — |
-| `youtubePlaylistId` | text | — | — |
+server adapter + frontend switchover done. Static `activitiesCopy.items` kept as
+fallback (marked `@deprecated`).
 
 ### Remaining
 
-- [~] Run seed script against production DB.
+- [x] Run seed script against dev DB (5 activities seeded).
 - [ ] Remove `activitiesCopy.items` after verifying Payload data in production (2-week grace period).
 - [ ] Add `publishedAt` field for manual sort order.
 
 ---
 
-## 3. ✅ Surface `logo.svg` on the homepage — `🔴 High`
-
-## 4. ✅ Reduce empty space around the roses separator — `🔴 High`
-
-## 5. 📰 More content for Activities — `🔴 High`
-
-### Projects backlog
-
-- [ ] **"Публікацыя аналітычнага даклада"** (Analytical report
-      publication) — completed project with a `solid` variant card
-      and a single CTA.
-- [ ] **"Камунальны дапаможнік"** (Utility-helper leaflet) —
-      completed project, a small PDF download.
-- [ ] **"Адукацыйны падкаст"** (Educational podcast) — `ongoing`
-      project with YouTube playlist.
+## 3. 📰 More content for Activities — `🔴 High`
 
 ### Editorial checklist (per entry)
 
@@ -138,21 +90,15 @@ against a running Payload server to populate the database.
 
 ---
 
-## 6. 🟠 Discovered extras (worth tracking, optional)
+## 4. 🟠 Discovered extras (worth tracking, optional)
 
 These are items I noticed during the audit and previous tasks. None
 are urgent, but they would round out the project.
 
-- [ ] **404 pages per language** — `src/app/(frontend)/not-found.tsx`
-      exists but is locale-blind. Add a 404 message that respects the
-      current locale.
 - [ ] **News index page** — `src/collections/News.ts` is wired in
       Payload but has no frontend route. Add
       `src/app/(frontend)/[lang]/news/page.tsx` and
       `src/app/(frontend)/[lang]/news/[slug]/page.tsx`.
-- [ ] **Sitemap** — already done (per the SEO work), but double-check
-      that the new `News` and `Campaigns` collections are added when
-      they go live.
 - [ ] **Robots.txt** — confirm `/admin` is disallowed (it currently
       isn't in the project — Payload serves its own).
 - [ ] **OG image** — `public/brand/og-image.png` is referenced in
@@ -178,7 +124,7 @@ are urgent, but they would round out the project.
 
 ---
 
-## 7. 👥 About Us — page extensions `🟡 Medium`
+## 5. 👥 About Us — page extensions `🟡 Medium`
 
 - [ ] **Our partners** — add a partner logos / descriptions section to the About page.
 - [ ] **History timeline** — add a chronological timeline of the organisation's milestones to the About page.
@@ -207,3 +153,23 @@ are urgent, but they would round out the project.
      `SECURITY.md`).
 - ✅ 2026-06-09 — `SECURITY.md` (disclosure policy + known-issues
      catalogue + roadmap).
+- ✅ 2026-06-09 — Surface `logo.svg` on the homepage.
+- ✅ 2026-06-09 — Reduce empty space around the roses separator
+- ✅ 2026-06-09 — News, Projects, GlobalSettings collections removed
+- ✅ 2026-06-09 — Payload types regenerated after collection removals
+- ✅ 2026-06-09 — i18n audit: all component hardcoded strings replaced with dictionary lookups (layout skip-link, header/footer labels, theme-toggle, mobile-menu, dialog close, donate QR, vision-toc, not-found, language-switcher)
+- ✅ 2026-06-09 — CLS fix: Inter + JetBrains_Mono set to `display: optional`
+
+---
+
+## Please check that everything works for
+- [checked] Security
+- [checked] SEO/metadata
+- [checked] Accessibility
+- [] Mobile/responsive
+- [] Error handling/resilience
+- [checked] Dead code / imports
+- [checked] Dependencies
+- [] Bundle analysis
+- [] Analytics
+- [checked] Lighthouse

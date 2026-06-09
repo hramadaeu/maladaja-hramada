@@ -91,6 +91,19 @@ export const donateCopy = {
     en: "Scan the QR code or copy the address.",
     pl: "Zeskanuj kod QR lub skopiuj adres.",
   } satisfies Record<Locale, string>,
+  closeModal: {
+    be: "Закрыць",
+    ru: "Закрыть",
+    en: "Close",
+    pl: "Zamknij",
+  } satisfies Record<Locale, string>,
+
+  qrCodeAriaPrefix: {
+    be: "Адрас кашалька",
+    ru: "Адрес кошелька",
+    en: "Wallet address",
+    pl: "Adres portfela",
+  } satisfies Record<Locale, string>,
 } as const;
 
 export const cryptoWallets = [

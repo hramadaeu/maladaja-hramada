@@ -5,6 +5,8 @@ import { DonateNavLink } from "@/components/navigation/donate-nav-link";
 import { LanguageSwitcher } from "@/components/navigation/language-switcher";
 import { MobileMenu } from "@/components/navigation/mobile-menu";
 import { ThemeToggle } from "./theme-toggle";
+import { headerCopy } from "@/lib/dictionaries/header";
+import { t } from "@/lib/translate";
 
 import type { Locale } from "@/config/i18n";
 
@@ -27,7 +29,7 @@ export function SiteHeader({ lang }: SiteHeaderProps) {
 
         <nav
           className="hidden md:flex items-center gap-1 font-button text-button uppercase"
-          aria-label="Main"
+          aria-label={t(headerCopy.navMain, lang)}
         >
           {navigation.map((item) => (
             <Link
@@ -41,7 +43,7 @@ export function SiteHeader({ lang }: SiteHeaderProps) {
 
           <div className="ml-2 border-l-2 border-ink-black pl-2 flex items-center gap-1">
             <LanguageSwitcher currentLang={lang} />
-            <ThemeToggle />
+            <ThemeToggle lang={lang} />
           </div>
         </nav>
 

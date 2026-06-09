@@ -28,4 +28,39 @@ export const footerCopy = {
     en: "Join us",
     pl: "Dołącz",
   } satisfies Record<Locale, string>,
+
+  logoHomeLabel: {
+    be: "Маладая Грамада — на галоўную",
+    ru: "Маладая Грамада — на главную",
+    en: "Maladaja Hramada — home",
+    pl: "Maladaja Hramada — strona główna",
+  } satisfies Record<Locale, string>,
+
+  socialInstagram: {
+    be: "Інстаграм",
+    ru: "Инстаграм",
+    en: "Instagram",
+    pl: "Instagram",
+  } satisfies Record<Locale, string>,
+
+  socialTelegram: {
+    be: "Тэлеграм",
+    ru: "Телеграм",
+    en: "Telegram",
+    pl: "Telegram",
+  } satisfies Record<Locale, string>,
+
+  socialTikTok: {
+    be: "ТыкТок",
+    ru: "ТикТок",
+    en: "TikTok",
+    pl: "TikTok",
+  } satisfies Record<Locale, string>,
+
+  socialLinkedIn: {
+    be: "ЛінкедІн",
+    ru: "ЛинкедИн",
+    en: "LinkedIn",
+    pl: "LinkedIn",
+  } satisfies Record<Locale, string>,
 } as const;

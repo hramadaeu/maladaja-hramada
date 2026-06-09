@@ -45,30 +45,6 @@ To help us triage, please include:
 
 ---
 
-## Scope
-
-**In scope** for this program:
-
-- The public website at `https://www.mhramada.org` (and any preview /
-  staging deployments under our control).
-- The Payload admin UI at `/admin`.
-- The Next.js source code, server actions, API routes, and
-  middleware in this repository.
-- Configuration under our control: CORS, CSP, HSTS, cookie security,
-  environment variables.
-
-**Out of scope:**
-
-- Third-party services we use but do not operate (e.g. Neon Postgres,
-  Vercel, Cloudflare, Google Drive press kit, Buy Me a Coffee, social
-  media platforms). Please report those issues to the corresponding
-  vendor.
-- Denial-of-service attacks that require unrealistic traffic volumes.
-- Reports from automated scanners without a working proof-of-concept.
-- "Theoretical" issues without a realistic attacker model.
-
----
-
 ## Security measures already in place
 
 The codebase ships with the following baseline:

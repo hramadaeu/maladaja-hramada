@@ -3,17 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { locales } from "@/config/i18n";
+import { mobileMenuCopy } from "@/lib/dictionaries/header";
+import { t } from "@/lib/translate";
 import { cn } from "@/lib/utils";
 
 type LanguageSwitcherProps = {
   currentLang: string;
-};
-
-const languageNames: Record<string, string> = {
-  ru: "Русский",
-  be: "Беларусь",
-  en: "English",
-  pl: "Polski",
 };
 
 export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
@@ -38,7 +33,7 @@ export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
               ? "bg-concrete-gray text-proletarian-red"
               : "text-ink-black hover:text-proletarian-red hover:bg-concrete-gray"
           )}
-          title={languageNames[locale]}
+          title={t(mobileMenuCopy.languageName, locale)}
         >
           {locale.toUpperCase()}
         </Link>

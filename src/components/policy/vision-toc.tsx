@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { t } from "@/lib/translate";
+import { policyCopy } from "@/lib/dictionaries/policy";
 import type { CommonVisionSection } from "@/content/policy/common-vision/types";
 
 type VisionTOCProps = {
@@ -61,7 +62,7 @@ export function VisionTOC({
       {/* Desktop: sticky sidebar */}
       <nav className="hidden md:block md:sticky md:top-32 self-start">
         <p className="font-label-caps text-label-caps text-foreground/40 uppercase mb-4 tracking-wider">
-          {t({ be: "Змест", ru: "Содержание", en: "Contents", pl: "Spis treści" }, lang)}
+          {t(policyCopy.contentsLabel, lang)}
         </p>
         <ul className="space-y-1">
           {sections.map((section) => (

@@ -46,13 +46,13 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <HashScroll />
       <SiteHeader lang={lang} />
-      <main id="main-content" className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6 sm:pb-8 lg:px-8">
+      <main id="main-content" className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6 sm:pb-8 lg:px-8 flex-1">
         {children}
       </main>
       <SiteFooter lang={lang} />
-    </>
+    </div>
   );
 }

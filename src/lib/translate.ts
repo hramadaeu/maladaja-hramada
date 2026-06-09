@@ -4,7 +4,7 @@ export function resolveLocale(lang: string): Locale {
   return isValidLocale(lang) ? lang : defaultLocale;
 }
 
-/** Pick a localized string; falls back to `ru`. */
+/** Pick a localized string; falls back to `defaultLocale` (`be`). */
 export function t<T extends Record<Locale, string>>(
   dictionary: T,
   lang: string,
@@ -13,7 +13,7 @@ export function t<T extends Record<Locale, string>>(
   return dictionary[locale] ?? dictionary[defaultLocale];
 }
 
-/** Pick a localized object; falls back to `ru`. */
+/** Pick a localized object; falls back to `defaultLocale` (`be`). */
 export function pickLocalized<T>(dictionary: Record<Locale, T>, lang: string): T {
   const locale = resolveLocale(lang);
   return dictionary[locale] ?? dictionary[defaultLocale];

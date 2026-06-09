@@ -8,6 +8,7 @@ import {
 
 import { OrgNameWordmark } from "@/components/brand/org-name-wordmark";
 import { footerCopy } from "@/lib/dictionaries/footer";
+import { t } from "@/lib/translate";
 import { navigation, externalLinks } from "@/config/site";
 import { getSiteLinks } from "@/config/site-links";
 import type { Locale } from "@/config/i18n";
@@ -17,21 +18,25 @@ const socialLinks = [
     name: "Instagram",
     href: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM,
     icon: FaInstagram,
+    labelKey: footerCopy.socialInstagram,
   },
   {
     name: "Telegram",
     href: process.env.NEXT_PUBLIC_SOCIAL_TELEGRAM,
     icon: FaTelegram,
+    labelKey: footerCopy.socialTelegram,
   },
   {
     name: "TikTok",
     href: process.env.NEXT_PUBLIC_SOCIAL_TIKTOK,
     icon: FaTiktok,
+    labelKey: footerCopy.socialTikTok,
   },
   {
     name: "LinkedIn",
     href: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN,
     icon: FaLinkedin,
+    labelKey: footerCopy.socialLinkedIn,
   },
 ];
 
@@ -49,7 +54,7 @@ export function SiteFooter({ lang }: SiteFooterProps) {
         <Link
           href={`/${lang}`}
           className="mb-6 md:mb-0 inline-flex transition-opacity hover:opacity-90"
-          aria-label="Maladaja Hramada — home"
+          aria-label={t(footerCopy.logoHomeLabel, lang)}
         >
           <OrgNameWordmark light className="h-7 w-[min(100%,200px)] sm:h-8 sm:w-[220px]" />
         </Link>
@@ -98,7 +103,7 @@ export function SiteFooter({ lang }: SiteFooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex h-9 w-9 items-center justify-center text-paper-white/70 transition-all hover:text-proletarian-red"
-                aria-label={social.name}
+                aria-label={t(social.labelKey, lang)}
               >
                 <Icon className="h-5 w-5" />
               </Link>
