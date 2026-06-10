@@ -20,6 +20,7 @@ export function HomeSection({ lang }: HomeSectionProps) {
           alt=""
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover grayscale opacity-20"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpiUpWxXKuxpPA8eXvKL90zZ2xJVKlYZ8syIQ87YgsPF2tmxKto2n8NxmsIAxGtOUFSoV4txswaobN3y4PldBBV200u8NJpy9uvGZ_Yz5lxJBtAOqS8zBLJmLOjdY7aNAyqA7m3jo_NjJ2RrQ9i1kyTQ5R2kkc_i3agnkWUav4ViLDGOMsv9KWyPwMLxl6atWvzznfhyVwBKlnEyLXNhf07v3IPX6G33TQFG4UZDqRA75Sy0fVjg2jhj2QYRStWPhUo-VL9cBjcjUk"

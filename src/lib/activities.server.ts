@@ -5,6 +5,7 @@ import type { Locale } from "@/config/i18n";
 import { activitiesCopy } from "@/lib/dictionaries/activities";
 import { defaultLocale, isValidLocale } from "@/config/i18n";
 import { pickLocalized, resolveLocale } from "@/lib/translate";
+import { validateActivity } from "@/lib/activity-schema";
 
 export type ActivityItem = {
   id: string;
@@ -36,7 +37,8 @@ export async function getActivities(locale?: string): Promise<ActivityItem[]> {
     });
 
     return result.docs.map(mapActivity);
-  } catch {
+  } catch (e) {
+    console.error("[activities.server] getActivities failed", e);
     return getStaticActivities(locale);
   }
 }
@@ -57,45 +59,62 @@ export async function getActivityBySlug(
     });
 
     return result.docs.length > 0 ? mapActivity(result.docs[0]) : null;
-  } catch {
+  } catch (e) {
+    console.error(`[activities.server] getActivityBySlug failed (slug=${slug})`, e);
     const items = getStaticActivities(locale);
     return items.find((i) => i.slug === slug) ?? null;
   }
 }
 
 function mapActivity(doc: Record<string, unknown>): ActivityItem {
-  const tagsArr = doc.tags as Array<{ tag: string }> | null | undefined;
+  const validated = validateActivity(doc);
+  if (!validated) {
+    return {
+      id: String(doc.id ?? "unknown"),
+      slug: String(doc.slug ?? "unknown"),
+      type: "project",
+      title: String(doc.title ?? ""),
+      description: String(doc.description ?? ""),
+    };
+  }
+
+  const imageSrc = (() => {
+    if (!validated.image || typeof validated.image === "number") return undefined;
+    return validated.image.url ?? (validated.image.filename ? `/media/${validated.image.filename}` : undefined);
+  })();
+
+  const progress = (() => {
+    if (!validated.progress || validated.progress.current == null) return undefined;
+    return {
+      current: validated.progress.current,
+      max: validated.progress.max ?? 0,
+    };
+  })();
+
+  const cta = (() => {
+    if (!validated.cta || !validated.cta.href || !validated.cta.label) return undefined;
+    return {
+      type: validated.cta.type ?? "external",
+      href: validated.cta.href,
+      label: validated.cta.label,
+    };
+  })();
+
   return {
-    id: doc.id as string,
-    slug: doc.slug as string,
-    type: doc.type as "campaign" | "project",
-    title: doc.title as string,
-    description: (doc.description as string) ?? "",
-    imageSrc: (() => {
-      const img = doc.image as Record<string, unknown> | null;
-      return (img?.url as string | undefined) ?? (img?.filename ? `/media/${img.filename}` : undefined);
-    })(),
-    imageAlt: (doc.alt as string | undefined) ?? undefined,
-    badge: (doc.badge as "urgent" | "ongoing" | undefined) ?? undefined,
-    variant: (doc.variant as "solid" | "card" | undefined) ?? undefined,
-    progress:
-      doc.progress != null && (doc.progress as Record<string, unknown>).current != null
-        ? {
-            current: (doc.progress as Record<string, number>).current,
-            max: (doc.progress as Record<string, number>).max,
-          }
-        : undefined,
-    tags: tagsArr?.map((t) => t.tag).filter(Boolean) ?? undefined,
-    cta:
-      doc.cta != null && (doc.cta as Record<string, unknown>).type != null
-        ? {
-            type: (doc.cta as Record<string, string>).type as "external" | "internal",
-            href: (doc.cta as Record<string, string>).href,
-            label: (doc.cta as Record<string, string>).label,
-          }
-        : undefined,
-    date: (doc.date as string | undefined) ?? undefined,
-    youtubePlaylistId: (doc.youtubePlaylistId as string | undefined) ?? undefined,
+    id: String(validated.id),
+    slug: validated.slug,
+    type: validated.type,
+    title: validated.title,
+    description: validated.description ?? "",
+    imageSrc,
+    imageAlt: validated.alt ?? undefined,
+    badge: validated.badge ?? undefined,
+    variant: validated.variant ?? undefined,
+    progress,
+    tags: validated.tags?.map((t) => t.tag).filter((t): t is string => t != null) ?? undefined,
+    cta,
+    date: validated.date ?? undefined,
+    youtubePlaylistId: validated.youtubePlaylistId ?? undefined,
   };
 }
 

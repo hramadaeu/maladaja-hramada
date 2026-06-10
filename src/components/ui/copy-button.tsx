@@ -21,7 +21,8 @@ export function CopyButton({ value, label, copiedLabel, className }: CopyButtonP
       await navigator.clipboard.writeText(value.replace(/\s/g, ""));
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
-    } catch {
+    } catch (e) {
+      console.error("[copy-button] clipboard write failed", e);
       setCopied(false);
     }
   }

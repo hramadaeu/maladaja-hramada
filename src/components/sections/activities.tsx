@@ -5,6 +5,7 @@ import { ArrowRight, HeartHandshake } from "lucide-react";
 import type { ActivityItem } from "@/lib/activities.server";
 import { activitiesCopy, activitiesPageCopy } from "@/lib/dictionaries/activities";
 import { t } from "@/lib/translate";
+import { progressWidth } from "@/lib/utils";
 
 type ActivitiesSectionProps = {
   lang: string;
@@ -32,12 +33,18 @@ export function ActivitiesSection({ lang, teaser, items }: ActivitiesSectionProp
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {displayItems.map((item) => {
-          if (item.type === "campaign") {
-            return renderCampaignCard(item as ActivityItem & { type: "campaign" }, lang);
-          }
-          return renderProjectCard(item as ActivityItem & { type: "project" }, lang);
-        })}
+        {displayItems.length === 0 ? (
+          <p className="col-span-full font-body text-body-md text-foreground/60 text-center py-12">
+            {t(activitiesCopy.noActivities, lang)}
+          </p>
+        ) : (
+          displayItems.map((item) => {
+            if (item.type === "campaign") {
+              return renderCampaignCard(item as ActivityItem & { type: "campaign" }, lang);
+            }
+            return renderProjectCard(item as ActivityItem & { type: "project" }, lang);
+          })
+        )}
       </div>
     </section>
   );
@@ -111,7 +118,7 @@ function renderCampaignCard(
             <div className="w-full h-4 bg-concrete-gray brutal-border mb-4">
               <div
                 className="h-full bg-proletarian-red"
-                style={{ width: `${(item.progress.current / item.progress.max) * 100}%` }}
+                style={{ width: progressWidth(item.progress.current, item.progress.max) }}
               />
             </div>
             <div className="flex justify-between font-label-caps text-label-caps text-ink-black mb-6">

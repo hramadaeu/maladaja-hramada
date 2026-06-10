@@ -5,6 +5,8 @@ import { ArrowLeft, HeartHandshake, Play } from "lucide-react";
 import type { ActivityItem } from "@/lib/activities.server";
 import { activitiesCopy } from "@/lib/dictionaries/activities";
 import { t } from "@/lib/translate";
+import { progressWidth } from "@/lib/utils";
+import { YouTubeEmbed } from "@/components/ui/youtube-embed";
 
 type ActivityDetailProps = {
   lang: string;
@@ -53,13 +55,7 @@ export function ActivityDetail({ lang, item }: ActivityDetailProps) {
         {item.youtubePlaylistId ? (
           <div className="mt-10 max-w-3xl">
             <div className="relative brutal-border overflow-hidden">
-              <iframe
-                src={`https://www.youtube.com/embed/videoseries?list=${item.youtubePlaylistId}`}
-                title={item.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="w-full aspect-video"
-              />
+              <YouTubeEmbed playlistId={item.youtubePlaylistId} title={item.title} />
             </div>
             <a
               href={`https://www.youtube.com/playlist?list=${item.youtubePlaylistId}`}
@@ -78,7 +74,7 @@ export function ActivityDetail({ lang, item }: ActivityDetailProps) {
             <div className="w-full h-4 bg-concrete-gray brutal-border mb-4 max-w-md">
               <div
                 className="h-full bg-proletarian-red"
-                style={{ width: `${(item.progress.current / item.progress.max) * 100}%` }}
+                style={{ width: progressWidth(item.progress.current, item.progress.max) }}
               />
             </div>
             <p className="font-label-caps text-label-caps text-foreground/60 mb-8">

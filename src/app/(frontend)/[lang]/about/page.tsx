@@ -1,9 +1,9 @@
 ﻿import type { Metadata } from "next";
-import { isValidLocale, type Locale } from "@/config/i18n";
+import { isValidLocale } from "@/config/i18n";
 import { notFound } from "next/navigation";
 import { Scale, HeartHandshake, Users, Sparkles } from "lucide-react";
 
-import { t } from "@/lib/translate";
+import { resolveLocale, t } from "@/lib/translate";
 import { getSiteLinks } from "@/config/site-links";
 import { localeMetadata } from "@/config/seo";
 import { aboutCopy, aboutValues } from "@/lib/dictionaries/about";
@@ -15,7 +15,7 @@ type AboutUsProps = {
 export async function generateMetadata({ params }: AboutUsProps): Promise<Metadata> {
   const { lang } = await params;
   if (!isValidLocale(lang)) notFound();
-  const locale = lang as Locale;
+  const locale = resolveLocale(lang);
   return localeMetadata(lang, {
     title: aboutCopy.whoWeAre[locale],
     description: aboutCopy.mission[locale],
@@ -32,10 +32,6 @@ const valueIcons = {
 
 export default async function AboutUs({ params }: AboutUsProps) {
   const { lang } = await params;
-
-  if (!isValidLocale(lang)) {
-    notFound();
-  }
 
   const links = getSiteLinks();
 
@@ -130,12 +126,12 @@ export default async function AboutUs({ params }: AboutUsProps) {
             >
               {t(aboutCopy.getInvolved, lang)}
             </a>
-            <a
-              href="#"
+            <button
+              type="button"
               className="bg-transparent text-paper-white font-button text-button uppercase px-8 py-4 border-2 border-paper-white hover:bg-background hover:text-proletarian-red transition-all duration-100 inline-flex items-center justify-center"
             >
               {t(aboutCopy.contactUs, lang)}
-            </a>
+            </button>
           </div>
         </section>
       </div>

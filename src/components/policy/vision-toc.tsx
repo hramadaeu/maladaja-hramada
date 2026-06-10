@@ -60,7 +60,7 @@ export function VisionTOC({
       </details>
 
       {/* Desktop: sticky sidebar */}
-      <nav className="hidden md:block md:sticky md:top-32 self-start">
+      <nav aria-label={t(policyCopy.contentsLabel, lang)} className="hidden md:block md:sticky md:top-32 self-start">
         <p className="font-label-caps text-label-caps text-foreground/40 uppercase mb-4 tracking-wider">
           {t(policyCopy.contentsLabel, lang)}
         </p>

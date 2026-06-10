@@ -27,10 +27,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function YouthPolicyPage({ params }: PageProps) {
   const { lang } = await params;
 
-  if (!isValidLocale(lang)) {
-    notFound();
-  }
-
   return (
     <PolicyPageShell
       lang={lang}

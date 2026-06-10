@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { locales, type Locale } from "@/config/locales";
+import { resolveLocale } from "@/lib/translate";
 
-export const siteUrl = process.env.SITE_URL ?? "https://www.mhramada.org";
+export const siteUrl = process.env.SITE_URL ?? (process.env.NODE_ENV === "production" ? "https://www.mhramada.org" : "http://localhost:3000");
 
 export const siteName: Record<Locale, string> = {
   ru: "Маладая Грамада",
@@ -28,7 +29,7 @@ export function pageUrl(lang: string, path = ""): string {
 }
 
 export function defaultMetadata(lang: string): Metadata {
-  const locale = lang as Locale;
+  const locale = resolveLocale(lang);
   return {
     title: siteName[locale],
     description: siteDescription[locale],
@@ -82,7 +83,7 @@ export function localeMetadata(
   lang: string,
   input: LocaleMetadataInput,
 ): Metadata {
-  const locale = lang as Locale;
+  const locale = resolveLocale(lang);
   const url = pageUrl(lang, input.path ?? "");
   const fullTitle = `${input.title} | ${siteName[locale]}`;
 

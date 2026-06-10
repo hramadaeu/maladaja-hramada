@@ -95,10 +95,11 @@ fallback (marked `@deprecated`).
 These are items I noticed during the audit and previous tasks. None
 are urgent, but they would round out the project.
 
-- [ ] **News index page** — `src/collections/News.ts` is wired in
+- [x] **News index page** — `src/collections/News.ts` is wired in
       Payload but has no frontend route. Add
       `src/app/(frontend)/[lang]/news/page.tsx` and
       `src/app/(frontend)/[lang]/news/[slug]/page.tsx`.
+      *(Collection removed 2026-06-09 — item obsolete.)*
 - [ ] **Robots.txt** — confirm `/admin` is disallowed (it currently
       isn't in the project — Payload serves its own).
 - [ ] **OG image** — `public/brand/og-image.png` is referenced in
@@ -131,6 +132,21 @@ are urgent, but they would round out the project.
 
 ---
 
+## 6. 🔴 Lighthouse & audit findings
+
+Open items from the code audit. M8 (OG image) is already tracked in #4.
+
+### 🟠 Major
+- [ ] **M2 — Env var startup validation** — `JOIN_FORM_URL`, `DONATION_*`, `CONTACT_EMAIL`, `NEXT_PUBLIC_SOCIAL_*` silently default to empty strings. Add startup check that logs a warning. (`src/config/site-links.ts:2-15`)
+- [ ] **M6 — Color contrast** — `text-foreground/50` (~3.5:1) and `/40` (~2.8:1) on TOC headings, section numbers, inactive tab labels fails WCAG AA. Raise opacity to ≥60%. (`vision-toc.tsx:64,76,80`, `youth-policy-tabs.tsx:31,34`)
+
+### 🟡 Moderate
+- [ ] **N4 — HashScroll scope** — loaded on every page via `[lang]/layout.tsx` but only useful on homepage (`#donate`). Move into `[lang]/page.tsx` or add conditional. (`src/app/(frontend)/[lang]/layout.tsx:50`)
+- [ ] **N6 — Mask CSS duplication** — `about/page.tsx` and `roses-separator.tsx` have repeated vendor-prefixed `mask-image`/`mask-size` inline styles. Extract to shared constant or CSS utility.
+- [ ] **N9 — Dependency category** — `cross-env` and `shadcn` listed in `dependencies` but are dev-only. Move to `devDependencies`. (`package.json`)
+
+---
+
 ## Process
 
 - Each item above gets its own branch (or its own sub-PR) so reviews
@@ -159,17 +175,18 @@ are urgent, but they would round out the project.
 - ✅ 2026-06-09 — Payload types regenerated after collection removals
 - ✅ 2026-06-09 — i18n audit: all component hardcoded strings replaced with dictionary lookups (layout skip-link, header/footer labels, theme-toggle, mobile-menu, dialog close, donate QR, vision-toc, not-found, language-switcher)
 - ✅ 2026-06-09 — CLS fix: Inter + JetBrains_Mono set to `display: optional`
+- ✅ 2026-06-10 — Audit fixes: error boundaries (C1), Suspense streaming (M1), `<nav>` aria-label (M3), `<a href="#">` → button (M4), ARIA tabs (M5), zod Payload validation (M7), dialog closeLabel (N1), `lang as Locale` → `resolveLocale()` (N2), theme-toggle fallback (N3), `progressWidth()` helper (N5), silent catch logging (N7), YouTube embed fallback (N8), dynamic analytics (N10), dev SITE_URL (N11), 404 meta (N12), dedup locale checks (N13), empty activities message (N14), `.env` secrets verified safe (C2)
 
 ---
 
 ## Please check that everything works for
-- [checked] Security
-- [checked] SEO/metadata
-- [checked] Accessibility
-- [] Mobile/responsive
-- [] Error handling/resilience
-- [checked] Dead code / imports
-- [checked] Dependencies
-- [] Bundle analysis
-- [] Analytics
-- [checked] Lighthouse
+- 🔵 Security
+- 🔵 SEO/metadata
+- 🟡 Accessibility *(M6 color contrast still open)*
+- Mobile/responsive
+- 🔵 Error handling/resilience
+- 🔵 Dead code / imports
+- 🔵 Dependencies
+- 🔵 Bundle analysis
+- 🔵 Analytics
+- 🟡 Lighthouse *(bfcache, CLS, fetchpriority fixed — full audit not run)*

@@ -3,12 +3,16 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { t } from "@/lib/translate";
+import { policyCopy } from "@/lib/dictionaries/policy";
 import type { YouthPolicySection } from "@/content/policy/youth-policy/types";
 
 type YouthPolicyTabsProps = {
   sections: YouthPolicySection[];
   lang: string;
 };
+
+function tabId(num: number) { return `yp-tab-${num}`; }
+function panelId(num: number) { return `yp-panel-${num}`; }
 
 export function YouthPolicyTabs({ sections, lang }: YouthPolicyTabsProps) {
   const [activeTab, setActiveTab] = useState(0);
@@ -19,10 +23,14 @@ export function YouthPolicyTabs({ sections, lang }: YouthPolicyTabsProps) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-x-1 gap-y-1 border-b-2 border-border mb-8">
+      <div role="tablist" aria-label={t(policyCopy.contentsLabel, lang)} className="flex flex-wrap gap-x-1 gap-y-1 border-b-2 border-border mb-8">
         {sections.map((section, idx) => (
           <button
             key={section.number}
+            role="tab"
+            aria-selected={activeTab === idx}
+            id={tabId(section.number)}
+            aria-controls={panelId(section.number)}
             onClick={() => setActiveTab(idx)}
             className={cn(
               "px-3 py-2.5 font-button text-button uppercase text-left transition-colors duration-100 leading-tight",
@@ -39,7 +47,7 @@ export function YouthPolicyTabs({ sections, lang }: YouthPolicyTabsProps) {
         ))}
       </div>
 
-      <div>
+      <div role="tabpanel" id={panelId(activeSection.number)} aria-labelledby={tabId(activeSection.number)}>
         <div className="inline-block bg-foreground text-background font-label-caps text-label-caps px-2 py-1 mb-6">
           {`${activeSection.number}`.padStart(2, "0")} — {t(activeSection.title, lang)}
         </div>

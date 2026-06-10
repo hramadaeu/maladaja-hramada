@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 import { isValidLocale, locales } from "@/config/i18n";
@@ -38,18 +39,33 @@ export async function generateMetadata({
   });
 }
 
+function ActivityDetailSkeleton() {
+  return (
+    <article className="py-12 px-4 md:px-16 max-w-container-max mx-auto animate-pulse">
+      <div className="h-6 w-32 bg-concrete-gray mb-6" />
+      <div className="h-12 w-3/4 bg-concrete-gray mb-8" />
+      <div className="h-64 md:h-96 bg-concrete-gray brutal-border" />
+      <div className="mt-10 space-y-4">
+        <div className="h-6 w-full bg-concrete-gray" />
+        <div className="h-6 w-5/6 bg-concrete-gray" />
+        <div className="h-6 w-2/3 bg-concrete-gray" />
+      </div>
+    </article>
+  );
+}
+
+async function ActivityDetailFetcher({ lang, slug }: { lang: string; slug: string }) {
+  const item = await getActivityBySlug(slug, lang);
+  if (!item) notFound();
+  return <ActivityDetail lang={lang} item={item} />;
+}
+
 export default async function ActivitySlugPage({ params }: SlugPageProps) {
   const { lang, slug } = await params;
 
-  if (!isValidLocale(lang)) {
-    notFound();
-  }
-
-  const item = await getActivityBySlug(slug, lang);
-
-  if (!item) {
-    notFound();
-  }
-
-  return <ActivityDetail lang={lang} item={item} />;
+  return (
+    <Suspense fallback={<ActivityDetailSkeleton />}>
+      <ActivityDetailFetcher lang={lang} slug={slug} />
+    </Suspense>
+  );
 }

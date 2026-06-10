@@ -8,7 +8,7 @@ import {
 
 import { OrgNameWordmark } from "@/components/brand/org-name-wordmark";
 import { footerCopy } from "@/lib/dictionaries/footer";
-import { t } from "@/lib/translate";
+import { resolveLocale, t } from "@/lib/translate";
 import { navigation, externalLinks } from "@/config/site";
 import { getSiteLinks } from "@/config/site-links";
 import type { Locale } from "@/config/i18n";
@@ -45,7 +45,7 @@ type SiteFooterProps = {
 };
 
 export function SiteFooter({ lang }: SiteFooterProps) {
-  const locale = lang as Locale;
+  const locale = resolveLocale(lang);
   const links = getSiteLinks();
 
   return (

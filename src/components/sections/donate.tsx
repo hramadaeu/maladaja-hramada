@@ -28,7 +28,8 @@ export async function DonateSection({ lang }: DonateSectionProps) {
         errorCorrectionLevel: "M",
         color: { dark: "#1e1e1c", light: "#ffffff" },
       });
-    } catch {
+    } catch (e) {
+      console.error(`[donate] QR generation failed for wallet ${wallet.id}`, e);
       qrCodes[wallet.id] = "";
     }
   }

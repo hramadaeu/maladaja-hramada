@@ -1,9 +1,8 @@
 ﻿import { cookies } from "next/headers";
 import { Russo_One, Inter, JetBrains_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { VercelAnalytics } from "@/components/ui/vercel-analytics";
 import { headerCopy } from "@/lib/dictionaries/header";
 import { t } from "@/lib/translate";
 
@@ -13,19 +12,16 @@ const russoOne = Russo_One({
   variable: "--font-russo-one",
   subsets: ["cyrillic", "latin"],
   weight: "400",
-  display: "optional",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["cyrillic", "latin"],
-  display: "optional",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["cyrillic", "latin"],
-  display: "optional",
 });
 
 export default async function FrontendLayout({
@@ -69,8 +65,7 @@ export default async function FrontendLayout({
         <ThemeProvider>
           {children}
         </ThemeProvider>
-        <Analytics />
-        <SpeedInsights />
+        <VercelAnalytics />
       </body>
     </html>
   );

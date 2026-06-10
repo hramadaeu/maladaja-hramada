@@ -72,6 +72,13 @@ export const activitiesCopy = {
     pl: "Podpisów",
   } satisfies Record<Locale, string>,
 
+  noActivities: {
+    be: "Пакуль нічога няма",
+    ru: "Пока ничего нет",
+    en: "No activities yet",
+    pl: "Brak aktywności",
+  } satisfies Record<Locale, string>,
+
   /** @deprecated Migrated to Payload Activity collection. */
   items: [
     {

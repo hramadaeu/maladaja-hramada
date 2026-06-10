@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { isValidLocale, type Locale } from "@/config/i18n";
+import { isValidLocale } from "@/config/i18n";
+import { resolveLocale } from "@/lib/translate";
 import { PolicyIndex } from "@/components/policy/policy-index";
 import { localeMetadata } from "@/config/seo";
 import { policyCopy } from "@/lib/dictionaries/policy";
@@ -12,7 +13,7 @@ type PolicyPageProps = {
 export async function generateMetadata({ params }: PolicyPageProps): Promise<Metadata> {
   const { lang } = await params;
   if (!isValidLocale(lang)) notFound();
-  const locale = lang as Locale;
+  const locale = resolveLocale(lang);
   return localeMetadata(lang, {
     title: policyCopy.indexTitle[locale],
     description: policyCopy.indexIntro[locale],
@@ -22,10 +23,6 @@ export async function generateMetadata({ params }: PolicyPageProps): Promise<Met
 
 export default async function PolicyPage({ params }: PolicyPageProps) {
   const { lang } = await params;
-
-  if (!isValidLocale(lang)) {
-    notFound();
-  }
 
   return <PolicyIndex lang={lang} />;
 }

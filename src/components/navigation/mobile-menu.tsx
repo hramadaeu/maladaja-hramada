@@ -15,15 +15,14 @@ import {
 } from "@/components/ui/dialog";
 import { navigation } from "@/config/site";
 import { mobileMenuCopy } from "@/lib/dictionaries/header";
-import { t } from "@/lib/translate";
-import type { Locale } from "@/config/i18n";
+import { resolveLocale, t } from "@/lib/translate";
 
 type MobileMenuProps = {
   lang: string;
 };
 
 export function MobileMenu({ lang }: MobileMenuProps) {
-  const locale = lang as Locale;
+  const locale = resolveLocale(lang);
 
   return (
     <Dialog>

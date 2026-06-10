@@ -6,9 +6,7 @@ import { LanguageSwitcher } from "@/components/navigation/language-switcher";
 import { MobileMenu } from "@/components/navigation/mobile-menu";
 import { ThemeToggle } from "./theme-toggle";
 import { headerCopy } from "@/lib/dictionaries/header";
-import { t } from "@/lib/translate";
-
-import type { Locale } from "@/config/i18n";
+import { resolveLocale, t } from "@/lib/translate";
 
 import { navigation } from "@/config/site";
 
@@ -20,7 +18,7 @@ type SiteHeaderProps = {
 };
 
 export function SiteHeader({ lang }: SiteHeaderProps) {
-  const locale = lang as Locale;
+  const locale = resolveLocale(lang);
 
   return (
     <header className="bg-paper-white w-full border-b-2 border-ink-black z-50 relative">
