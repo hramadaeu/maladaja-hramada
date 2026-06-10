@@ -34,7 +34,8 @@ const csp = [
   "object-src 'none'",
   "frame-ancestors 'none'",
   "form-action 'self'",
-  "img-src 'self' data: blob: https://lh3.googleusercontent.com https://img.buymeacoffee.com",
+  // TODO: remove `https://maladaja-hramada.vercel.app` when the production domain covers all origins.
+  "img-src 'self' data: blob: https://lh3.googleusercontent.com https://img.buymeacoffee.com https://maladaja-hramada.vercel.app",
   "media-src 'self'",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",

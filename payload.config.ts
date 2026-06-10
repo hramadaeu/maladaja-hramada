@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 
 import { Activity } from "./src/collections/Activity";
 import { Media } from "./src/collections/Media";
+import { Partner } from "./src/collections/Partner";
 import { Users } from "./src/collections/Users";
 import { defaultLocale, locales } from "./src/config/locales";
 
@@ -57,6 +58,11 @@ const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
 const trustedOrigins = Array.from(
   new Set([
     siteUrl,
+    // Allow localhost in development for the admin panel.
+    ...(process.env.NODE_ENV !== "production" ? ["http://localhost:3000"] : []),
+    // Vercel preview URL — hardcoded until the production domain is finalised.
+    // TODO: remove when SITE_URL covers all deployment domains.
+    "https://maladaja-hramada.vercel.app",
     // Vercel preview URLs share the production cookies, so allow them
     // explicitly when running on Vercel.
     ...(process.env.VERCEL_ENV === "production"
@@ -80,7 +86,7 @@ export default buildConfig({
       titleSuffix: " — Payload",
     },
   },
-  collections: [Users, Media, Activity],
+  collections: [Users, Media, Activity, Partner],
   editor: lexicalEditor(),
   localization: {
     locales: [...locales],

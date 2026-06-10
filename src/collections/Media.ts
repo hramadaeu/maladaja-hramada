@@ -31,9 +31,7 @@ export const Media: CollectionConfig = {
     allowRestrictedFileTypes: false,
   },
   access: {
-    // Public can read images served from the static directory.
     read: () => true,
-    // Only authenticated admins can upload/modify media.
     create: ({ req }) => Boolean(req.user),
     update: ({ req }) => Boolean(req.user),
     delete: ({ req }) => Boolean(req.user),

@@ -122,12 +122,16 @@ are urgent, but they would round out the project.
       (one per locale) with the locale-specific tagline.
 - [ ] **Open Graph / Twitter card test** — share a page on
       Twitter/LinkedIn/Facebook and screenshot the preview to confirm.
+- [ ] **Hardcoded Vercel preview domain** — `https://maladaja-hramada.vercel.app`
+      is hardcoded in `payload.config.ts` (CSRF/CORS `trustedOrigins`) and
+      `next.config.ts` (CSP `img-src`). Remove when the production domain
+      (`SITE_URL`) covers all deployment origins.
 
 ---
 
 ## 5. 👥 About Us — page extensions `🟡 Medium`
 
-- [ ] **Our partners** — add a partner logos / descriptions section to the About page.
+- [x] **Our partners** — Payload Partner collection, logo grid section on About page, 5 partners seeded with placeholder logos, website URLs added.
 - [ ] **History timeline** — add a chronological timeline of the organisation's milestones to the About page.
 
 ---
@@ -176,6 +180,9 @@ Open items from the code audit. M8 (OG image) is already tracked in #4.
 - ✅ 2026-06-09 — i18n audit: all component hardcoded strings replaced with dictionary lookups (layout skip-link, header/footer labels, theme-toggle, mobile-menu, dialog close, donate QR, vision-toc, not-found, language-switcher)
 - ✅ 2026-06-09 — CLS fix: Inter + JetBrains_Mono set to `display: optional`
 - ✅ 2026-06-10 — Audit fixes: error boundaries (C1), Suspense streaming (M1), `<nav>` aria-label (M3), `<a href="#">` → button (M4), ARIA tabs (M5), zod Payload validation (M7), dialog closeLabel (N1), `lang as Locale` → `resolveLocale()` (N2), theme-toggle fallback (N3), `progressWidth()` helper (N5), silent catch logging (N7), YouTube embed fallback (N8), dynamic analytics (N10), dev SITE_URL (N11), 404 meta (N12), dedup locale checks (N13), empty activities message (N14), `.env` secrets verified safe (C2)
+  - ✅ Partner Payload collection + data layer + logo grid section + 5 seeded partners with proper localized names and URLs
+  - ✅ Media & Partner collections: added missing access blocks (CSRF/CORS was the real cause of 403 — fixed by adding `http://localhost:3000` and `https://maladaja-hramada.vercel.app` to `trustedOrigins`)
+  - ✅ IUSY re-added after accidental deletion, partner URLs populated
 
 ---
 

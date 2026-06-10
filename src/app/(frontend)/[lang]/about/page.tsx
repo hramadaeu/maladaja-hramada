@@ -7,6 +7,8 @@ import { resolveLocale, t } from "@/lib/translate";
 import { getSiteLinks } from "@/config/site-links";
 import { localeMetadata } from "@/config/seo";
 import { aboutCopy, aboutValues } from "@/lib/dictionaries/about";
+import { getPartners } from "@/lib/partners.server";
+import { PartnersSection } from "@/components/sections/partners";
 
 type AboutUsProps = {
   params: Promise<{ lang: string }>;
@@ -34,6 +36,7 @@ export default async function AboutUs({ params }: AboutUsProps) {
   const { lang } = await params;
 
   const links = getSiteLinks();
+  const partners = await getPartners(lang);
 
   return (
     <div className="relative">
@@ -134,6 +137,15 @@ export default async function AboutUs({ params }: AboutUsProps) {
             </button>
           </div>
         </section>
+
+        {partners.length > 0 && (
+          <section>
+            <h2 className="font-headline text-headline-md uppercase text-foreground mb-8 border-b-2 border-border pb-4">
+              {t(aboutCopy.partnersTitle, lang)}
+            </h2>
+            <PartnersSection items={partners} />
+          </section>
+        )}
       </div>
     </div>
   );

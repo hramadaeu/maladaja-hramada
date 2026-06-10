@@ -63,6 +63,13 @@ export const aboutCopy = {
     en: "Contact Us",
     pl: "Skontaktuj się",
   } satisfies Record<Locale, string>,
+
+  partnersTitle: {
+    ru: "Наши партнёры",
+    be: "Нашыя партнёры",
+    en: "Our Partners",
+    pl: "Nasi partnerzy",
+  } satisfies Record<Locale, string>,
 } as const;
 
 export const aboutValues = [

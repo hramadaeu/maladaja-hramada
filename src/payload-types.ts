@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     activity: Activity;
+    partner: Partner;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +81,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     activity: ActivitySelect<false> | ActivitySelect<true>;
+    partner: PartnerSelect<false> | PartnerSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -211,6 +213,20 @@ export interface Activity {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partner".
+ */
+export interface Partner {
+  id: number;
+  name: string;
+  logo: number | Media;
+  alt?: string | null;
+  url?: string | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -244,6 +260,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'activity';
         value: number | Activity;
+      } | null)
+    | ({
+        relationTo: 'partner';
+        value: number | Partner;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -362,6 +382,19 @@ export interface ActivitySelect<T extends boolean = true> {
       };
   date?: T;
   youtubePlaylistId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partner_select".
+ */
+export interface PartnerSelect<T extends boolean = true> {
+  name?: T;
+  logo?: T;
+  alt?: T;
+  url?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
