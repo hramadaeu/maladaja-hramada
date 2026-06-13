@@ -32,10 +32,19 @@ async function ActivitiesList({ lang }: { lang: string }) {
 function ActivitiesListSkeleton() {
   return (
     <section className="pt-6 md:pt-8 pb-10 md:pb-14 px-4 md:px-16 max-w-container-max mx-auto animate-pulse">
-      <div className="h-10 w-48 bg-concrete-gray mb-12" />
+      <div className="h-10 w-48 bg-concrete-gray mb-8" />
+      <div className="w-full h-0.5 bg-concrete-gray mb-12" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="brutal-border h-72 bg-concrete-gray" />
+          <div key={i} className="brutal-border bg-concrete-gray/50 flex flex-col overflow-hidden">
+            <div className="h-48 bg-concrete-gray" />
+            <div className="p-6 space-y-4">
+              <div className="h-5 w-3/4 bg-concrete-gray" />
+              <div className="h-4 w-full bg-concrete-gray" />
+              <div className="h-4 w-2/3 bg-concrete-gray" />
+              <div className="h-10 w-full bg-concrete-gray mt-4" />
+            </div>
+          </div>
         ))}
       </div>
     </section>

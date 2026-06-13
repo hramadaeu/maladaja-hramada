@@ -5,6 +5,8 @@ import { defaultMetadata } from "@/config/seo";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { HashScroll } from "@/components/navigation/hash-scroll";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { BackToTop } from "@/components/ui/back-to-top";
 
 type LangLayoutProps = {
   children: React.ReactNode;
@@ -33,7 +35,7 @@ export async function generateMetadata({ params }: LangLayoutProps): Promise<Met
       default: siteTitle,
     },
     icons: {
-      icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+      icon: [{ url: "/brand/logo.svg", type: "image/svg+xml" }],
     },
   };
 }
@@ -47,12 +49,14 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
 
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollProgress />
       <HashScroll />
       <SiteHeader lang={lang} />
       <main id="main-content" className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6 sm:pb-8 lg:px-8 flex-1">
         {children}
       </main>
       <SiteFooter lang={lang} />
+      <BackToTop />
     </div>
   );
 }

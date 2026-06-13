@@ -31,7 +31,7 @@ export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
             "rounded-md px-2.5 py-1 font-button text-button uppercase transition-all duration-100 active:translate-x-0.5 active:translate-y-0.5",
             currentLang === locale
               ? "bg-concrete-gray text-proletarian-red"
-              : "text-ink-black hover:text-proletarian-red hover:bg-concrete-gray"
+              : "text-ink-black hover:text-proletarian-red hover:bg-concrete-gray dark:hover:bg-white/10"
           )}
           title={t(mobileMenuCopy.languageName, locale)}
         >

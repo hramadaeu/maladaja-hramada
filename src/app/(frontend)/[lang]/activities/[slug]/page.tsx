@@ -42,14 +42,16 @@ export async function generateMetadata({
 function ActivityDetailSkeleton() {
   return (
     <article className="py-12 px-4 md:px-16 max-w-container-max mx-auto animate-pulse">
-      <div className="h-6 w-32 bg-concrete-gray mb-6" />
-      <div className="h-12 w-3/4 bg-concrete-gray mb-8" />
-      <div className="h-64 md:h-96 bg-concrete-gray brutal-border" />
+      <div className="h-5 w-32 bg-concrete-gray mb-6" />
+      <div className="h-10 w-3/4 bg-concrete-gray mb-4" />
+      <div className="w-full h-0.5 bg-concrete-gray mb-8" />
+      <div className="h-64 md:h-96 w-full bg-concrete-gray" />
       <div className="mt-10 space-y-4">
-        <div className="h-6 w-full bg-concrete-gray" />
-        <div className="h-6 w-5/6 bg-concrete-gray" />
-        <div className="h-6 w-2/3 bg-concrete-gray" />
+        <div className="h-5 w-full bg-concrete-gray" />
+        <div className="h-5 w-5/6 bg-concrete-gray" />
+        <div className="h-5 w-2/3 bg-concrete-gray" />
       </div>
+      <div className="mt-10 aspect-video w-full bg-concrete-gray max-w-3xl" />
     </article>
   );
 }

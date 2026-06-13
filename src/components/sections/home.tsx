@@ -5,6 +5,8 @@ import { ArrowRight } from "lucide-react";
 import { homeSectionCopy } from "@/lib/dictionaries/home";
 import { t } from "@/lib/translate";
 import { getSiteLinks } from "@/config/site-links";
+import { Reveal } from "@/components/ui/reveal";
+import { BLUR_DATA_URL } from "@/lib/utils";
 
 type HomeSectionProps = {
   lang: string;
@@ -14,7 +16,7 @@ export function HomeSection({ lang }: HomeSectionProps) {
   const links = getSiteLinks();
 
   return (
-    <section className="relative w-full flex flex-col justify-center border-b-8 border-proletarian-red overflow-hidden">
+    <section className="relative w-full flex flex-col justify-center border-b-8 border-proletarian-red overflow-hidden grain">
       <div className="absolute inset-0 z-0">
         <Image
           alt=""
@@ -23,6 +25,8 @@ export function HomeSection({ lang }: HomeSectionProps) {
           fetchPriority="high"
           sizes="100vw"
           className="object-cover grayscale opacity-20"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpiUpWxXKuxpPA8eXvKL90zZ2xJVKlYZ8syIQ87YgsPF2tmxKto2n8NxmsIAxGtOUFSoV4txswaobN3y4PldBBV200u8NJpy9uvGZ_Yz5lxJBtAOqS8zBLJmLOjdY7aNAyqA7m3jo_NjJ2RrQ9i1kyTQ5R2kkc_i3agnkWUav4ViLDGOMsv9KWyPwMLxl6atWvzznfhyVwBKlnEyLXNhf07v3IPX6G33TQFG4UZDqRA75Sy0fVjg2jhj2QYRStWPhUo-VL9cBjcjUk"
         />
       </div>
@@ -31,7 +35,7 @@ export function HomeSection({ lang }: HomeSectionProps) {
         aria-hidden
       />
       <div className="relative max-w-container-max mx-auto px-4 md:px-16 pt-14 pb-16 w-full">
-        <div className="max-w-4xl">
+        <Reveal variant="zoom-in" duration={700} className="max-w-4xl">
           <div className="inline-block bg-foreground text-background font-label-caps text-label-caps px-2 py-1 mb-6">
             {t(homeSectionCopy.eyebrow, lang)}
           </div>
@@ -52,19 +56,19 @@ export function HomeSection({ lang }: HomeSectionProps) {
               href={links.joinFormUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-proletarian-red text-paper-white font-button text-button uppercase px-8 py-4 brutal-shadow transition-all duration-100 border-2 border-transparent hover:border-ink-black inline-flex items-center justify-center gap-2"
+              className="bg-proletarian-red text-paper-white font-button text-button uppercase px-8 py-4 brutal-shadow transition-all duration-100 border-2 border-transparent hover:border-ink-black dark:hover:border-paper-white inline-flex items-center justify-center gap-2"
             >
               {t(homeSectionCopy.ctaPrimary, lang)}
               <ArrowRight className="size-5" />
             </a>
             <Link
               href={`/${lang}/policy`}
-              className="bg-transparent text-foreground font-button text-button uppercase px-8 py-4 brutal-border transition-all duration-100 hover:bg-concrete-gray inline-flex items-center justify-center"
+              className="bg-transparent text-foreground font-button text-button uppercase px-8 py-4 brutal-border transition-all duration-100 hover:bg-concrete-gray dark:hover:bg-white/10 inline-flex items-center justify-center"
             >
               {t(homeSectionCopy.ctaSecondary, lang)}
             </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

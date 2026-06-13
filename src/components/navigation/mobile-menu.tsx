@@ -56,7 +56,7 @@ export function MobileMenu({ lang }: MobileMenuProps) {
             render={
               <button
                 type="button"
-                className="inline-flex size-10 items-center justify-center text-ink-black transition-all duration-100 hover:bg-concrete-gray active:translate-x-0.5 active:translate-y-0.5"
+className="inline-flex size-10 items-center justify-center text-ink-black transition-all duration-100 hover:bg-concrete-gray dark:hover:bg-white/10 active:translate-x-0.5 active:translate-y-0.5"
               />
             }
           >
@@ -85,7 +85,7 @@ export function MobileMenu({ lang }: MobileMenuProps) {
                 render={
                   <Link
                     href={`/${lang}${item.href}`}
-                    className="font-button text-button uppercase text-ink-black transition-all duration-100 hover:bg-concrete-gray hover:text-proletarian-red active:translate-x-0.5 active:translate-y-0.5 px-4 py-4"
+                    className="font-button text-button uppercase text-ink-black transition-all duration-100 hover:bg-concrete-gray dark:hover:bg-white/10 hover:text-proletarian-red active:translate-x-0.5 active:translate-y-0.5 px-4 py-4"
                   />
                 }
               >
@@ -106,7 +106,7 @@ export function MobileMenu({ lang }: MobileMenuProps) {
           <div className="mt-auto p-4">
             <DonateNavLink
               lang={lang}
-              className="block w-full bg-proletarian-red text-paper-white font-button text-button uppercase px-6 py-4 brutal-shadow transition-all duration-100 border-2 border-transparent hover:border-ink-black active:translate-x-0.5 active:translate-y-0.5 text-center"
+              className="block w-full bg-proletarian-red text-paper-white font-button text-button uppercase px-6 py-4 brutal-shadow transition-all duration-100 border-2 border-transparent hover:border-ink-black dark:hover:border-paper-white active:translate-x-0.5 active:translate-y-0.5 text-center"
             />
           </div>
         </nav>

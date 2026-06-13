@@ -38,7 +38,7 @@ export function ThemeToggle({ className, lang }: ThemeToggleProps) {
     <button
       onClick={toggleTheme}
       className={cn(
-        "relative inline-flex size-8 items-center justify-center rounded-md text-ink-black transition-all duration-100 hover:text-proletarian-red hover:bg-concrete-gray active:translate-x-0.5 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer",
+        "relative inline-flex size-8 items-center justify-center rounded-md text-ink-black transition-all duration-100 hover:text-proletarian-red hover:bg-concrete-gray dark:hover:bg-white/10 active:translate-x-0.5 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer",
         className
       )}
       aria-label={isDark ? t(mobileMenuCopy.themeLight, lang ?? defaultLocale) : t(mobileMenuCopy.themeDark, lang ?? defaultLocale)}

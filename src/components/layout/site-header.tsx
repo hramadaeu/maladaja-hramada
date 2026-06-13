@@ -11,7 +11,7 @@ import { resolveLocale, t } from "@/lib/translate";
 import { navigation } from "@/config/site";
 
 const navLinkClass =
-  "font-button text-button uppercase text-ink-black hover:text-proletarian-red transition-all duration-100 hover:bg-concrete-gray active:translate-x-0.5 active:translate-y-0.5 px-3 py-2";
+  "font-button text-button uppercase text-ink-black hover:text-proletarian-red transition-all duration-100 hover:bg-concrete-gray dark:hover:bg-white/10 active:translate-x-0.5 active:translate-y-0.5 px-3 py-2";
 
 type SiteHeaderProps = {
   lang: string;
@@ -48,7 +48,7 @@ export function SiteHeader({ lang }: SiteHeaderProps) {
         <div className="flex items-center gap-3">
           <DonateNavLink
             lang={lang}
-            className="hidden md:block bg-proletarian-red text-paper-white font-button text-button uppercase px-6 py-3 brutal-shadow transition-all duration-100 border-2 border-transparent hover:border-ink-black active:translate-x-0.5 active:translate-y-0.5"
+            className="hidden md:block bg-proletarian-red text-paper-white font-button text-button uppercase px-6 py-3 brutal-shadow transition-all duration-100 border-2 border-transparent hover:border-ink-black dark:hover:border-paper-white active:translate-x-0.5 active:translate-y-0.5"
           />
 
           <div className="md:hidden">

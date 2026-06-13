@@ -45,7 +45,7 @@ export default async function NotFound() {
           </p>
           <Link
             href={`/${lang}`}
-            className="inline-block border-2 border-transparent bg-proletarian-red px-8 py-4 font-button text-button uppercase text-paper-white brutal-shadow transition-all duration-100 hover:border-ink-black"
+            className="inline-block border-2 border-transparent bg-proletarian-red px-8 py-4 font-button text-button uppercase text-paper-white brutal-shadow transition-all duration-100 hover:border-ink-black dark:hover:border-paper-white"
           >
             {t(notFoundCopy.cta, lang)}
           </Link>

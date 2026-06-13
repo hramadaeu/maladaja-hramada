@@ -6,6 +6,8 @@ import type { ActivityItem } from "@/lib/activities.server";
 import { activitiesCopy, activitiesPageCopy } from "@/lib/dictionaries/activities";
 import { t } from "@/lib/translate";
 import { progressWidth } from "@/lib/utils";
+import { Reveal } from "@/components/ui/reveal";
+import { BLUR_DATA_URL } from "@/lib/utils";
 
 type ActivitiesSectionProps = {
   lang: string;
@@ -38,12 +40,13 @@ export function ActivitiesSection({ lang, teaser, items }: ActivitiesSectionProp
             {t(activitiesCopy.noActivities, lang)}
           </p>
         ) : (
-          displayItems.map((item) => {
-            if (item.type === "campaign") {
-              return renderCampaignCard(item as ActivityItem & { type: "campaign" }, lang);
-            }
-            return renderProjectCard(item as ActivityItem & { type: "project" }, lang);
-          })
+          displayItems.map((item, index) => (
+            <Reveal key={item.id} delay={index * 100}>
+              {item.type === "campaign"
+                ? renderCampaignCard(item as ActivityItem & { type: "campaign" }, lang)
+                : renderProjectCard(item as ActivityItem & { type: "project" }, lang)}
+            </Reveal>
+          ))
         )}
       </div>
     </section>
@@ -85,7 +88,7 @@ function renderCampaignCard(
   return (
     <article
       key={item.id}
-      className="bg-paper-white brutal-border border-t-4 border-t-proletarian-red flex flex-col h-full group hover:bg-concrete-gray transition-colors duration-200"
+      className="bg-paper-white brutal-border border-t-4 border-t-proletarian-red flex flex-col h-full group hover:bg-concrete-gray dark:hover:bg-white/10 transition-colors duration-200"
     >
       <div className="h-48 w-full relative overflow-hidden border-b-2 border-ink-black bg-ink-black">
         {item.imageSrc && (
@@ -94,6 +97,8 @@ function renderCampaignCard(
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             src={item.imageSrc}
           />
         )}
@@ -168,7 +173,7 @@ function renderProjectCard(
   return (
     <article
       key={item.id}
-      className="bg-paper-white brutal-border border-t-4 border-t-proletarian-red flex flex-col h-full group hover:bg-concrete-gray transition-colors duration-200"
+      className="bg-paper-white brutal-border border-t-4 border-t-proletarian-red flex flex-col h-full group hover:bg-concrete-gray dark:hover:bg-white/10 transition-colors duration-200"
     >
       <div className="h-48 w-full relative overflow-hidden border-b-2 border-ink-black bg-ink-black">
         {item.imageSrc && (
@@ -177,6 +182,8 @@ function renderProjectCard(
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             src={item.imageSrc}
           />
         )}

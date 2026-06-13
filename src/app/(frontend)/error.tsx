@@ -37,7 +37,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
           <button
             type="button"
             onClick={reset}
-            className="inline-block border-2 border-transparent bg-proletarian-red px-8 py-4 font-button text-button uppercase text-paper-white brutal-shadow transition-all duration-100 hover:border-ink-black"
+            className="inline-block border-2 border-transparent bg-proletarian-red px-8 py-4 font-button text-button uppercase text-paper-white brutal-shadow transition-all duration-100 hover:border-ink-black dark:hover:border-paper-white"
           >
             {t(errorCopy.cta, lang)}
           </button>

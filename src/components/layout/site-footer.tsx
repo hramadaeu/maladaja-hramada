@@ -64,7 +64,7 @@ export function SiteFooter({ lang }: SiteFooterProps) {
             <Link
               key={item.href}
               href={`/${lang}${item.href}`}
-              className="text-paper-white/70 hover:text-paper-white hover:underline decoration-proletarian-red decoration-2 transition-opacity duration-200"
+              className="text-paper-white/70 hover:text-paper-white underline-slide transition-opacity duration-200"
             >
               {item.label[locale]}
             </Link>
@@ -73,13 +73,13 @@ export function SiteFooter({ lang }: SiteFooterProps) {
             href={links.pressKitUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-paper-white/70 hover:text-paper-white hover:underline decoration-proletarian-red decoration-2 transition-opacity duration-200"
+            className="text-paper-white/70 hover:text-paper-white underline-slide transition-opacity duration-200"
           >
             {footerCopy.pressKit[locale]}
           </Link>
           <a
             href={externalLinks.email}
-            className="text-paper-white/70 hover:text-paper-white hover:underline decoration-proletarian-red decoration-2 transition-opacity duration-200"
+            className="text-paper-white/70 hover:text-paper-white underline-slide transition-opacity duration-200"
           >
             {footerCopy.contact[locale]}
           </a>
@@ -87,7 +87,7 @@ export function SiteFooter({ lang }: SiteFooterProps) {
             href={links.joinFormUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-paper-white/70 hover:text-paper-white hover:underline decoration-proletarian-red decoration-2 transition-opacity duration-200"
+            className="text-paper-white/70 hover:text-paper-white underline-slide transition-opacity duration-200"
           >
             {footerCopy.joinUs[locale]}
           </a>
@@ -102,7 +102,7 @@ export function SiteFooter({ lang }: SiteFooterProps) {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex h-9 w-9 items-center justify-center text-paper-white/70 transition-all hover:text-proletarian-red"
+                className="group relative inline-flex h-9 w-9 items-center justify-center text-paper-white/70 transition-all hover:text-proletarian-red dark:hover:text-brand-red-soft"
                 aria-label={t(social.labelKey, lang)}
               >
                 <Icon className="h-5 w-5" />

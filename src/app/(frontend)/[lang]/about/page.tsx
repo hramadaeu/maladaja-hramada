@@ -6,9 +6,11 @@ import { Scale, HeartHandshake, Users, Sparkles } from "lucide-react";
 import { resolveLocale, t } from "@/lib/translate";
 import { getSiteLinks } from "@/config/site-links";
 import { localeMetadata } from "@/config/seo";
-import { aboutCopy, aboutValues } from "@/lib/dictionaries/about";
+import { aboutCopy, aboutValues, aboutMilestones } from "@/lib/dictionaries/about";
 import { getPartners } from "@/lib/partners.server";
 import { PartnersSection } from "@/components/sections/partners";
+import { AboutTimeline } from "@/components/sections/about-timeline";
+import { Reveal } from "@/components/ui/reveal";
 
 type AboutUsProps = {
   params: Promise<{ lang: string }>;
@@ -70,6 +72,7 @@ export default async function AboutUs({ params }: AboutUsProps) {
       </div>
       
       <div className="relative z-10 flex flex-col gap-16 py-12">
+        <Reveal variant="fade-up">
         <section>
           <div className="inline-block bg-foreground text-background font-label-caps text-label-caps px-2 py-1 mb-6">
             {t(aboutCopy.badge, lang)}
@@ -86,7 +89,9 @@ export default async function AboutUs({ params }: AboutUsProps) {
             </p>
           </div>
         </section>
+        </Reveal>
 
+        <Reveal variant="fade-up">
         <section>
           <h2 className="font-headline text-headline-md uppercase text-foreground mb-8 border-b-2 border-border pb-4">
             {t(aboutCopy.valuesTitle, lang)}
@@ -112,8 +117,10 @@ export default async function AboutUs({ params }: AboutUsProps) {
             })}
           </div>
         </section>
+        </Reveal>
 
-        <section className="bg-proletarian-red text-paper-white brutal-border p-8 md:p-12">
+        <Reveal variant="fade-up" delay={100}>
+        <section className="bg-proletarian-red text-paper-white brutal-border p-8 md:p-12 relative grain">
           <h2 className="font-headline text-headline-lg uppercase mb-4">
             {t(aboutCopy.ctaTitle, lang)}
           </h2>
@@ -125,26 +132,38 @@ export default async function AboutUs({ params }: AboutUsProps) {
               href={links.joinFormUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-background text-proletarian-red font-button text-button uppercase px-8 py-4 brutal-border border-paper-white hover:bg-foreground hover:text-background hover:border-border transition-all duration-100 inline-flex items-center justify-center"
+              className="bg-background text-proletarian-red font-button text-button uppercase px-8 py-4 brutal-border border-paper-white hover:bg-foreground hover:text-background hover:border-border dark:hover:border-paper-white transition-all duration-100 inline-flex items-center justify-center"
             >
               {t(aboutCopy.getInvolved, lang)}
             </a>
             <button
               type="button"
-              className="bg-transparent text-paper-white font-button text-button uppercase px-8 py-4 border-2 border-paper-white hover:bg-background hover:text-proletarian-red transition-all duration-100 inline-flex items-center justify-center"
+              className="bg-transparent text-paper-white font-button text-button uppercase px-8 py-4 border-2 border-paper-white hover:bg-background hover:text-proletarian-red dark:hover:bg-white/10 dark:hover:text-paper-white transition-all duration-100 inline-flex items-center justify-center"
             >
               {t(aboutCopy.contactUs, lang)}
             </button>
           </div>
         </section>
+        </Reveal>
+
+        <Reveal variant="fade-up" delay={100}>
+        <section>
+          <h2 className="font-headline text-headline-md uppercase text-foreground mb-8 border-b-2 border-border pb-4">
+            {t(aboutCopy.historyTitle, lang)}
+          </h2>
+          <AboutTimeline milestones={aboutMilestones} lang={lang} />
+        </section>
+        </Reveal>
 
         {partners.length > 0 && (
+          <Reveal variant="fade-up" delay={150}>
           <section>
             <h2 className="font-headline text-headline-md uppercase text-foreground mb-8 border-b-2 border-border pb-4">
               {t(aboutCopy.partnersTitle, lang)}
             </h2>
             <PartnersSection items={partners} />
           </section>
+          </Reveal>
         )}
       </div>
     </div>

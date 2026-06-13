@@ -1,7 +1,7 @@
 export function RosesSeparator() {
   return (
     <div className="w-full overflow-hidden leading-none" aria-hidden>
-      <div className="relative w-full aspect-[3297/320]">
+      <div className="relative w-full aspect-[6594/320]">
         <div
           className="absolute inset-0 bg-proletarian-red opacity-[0.12]"
           style={{

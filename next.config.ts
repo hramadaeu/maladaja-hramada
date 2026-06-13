@@ -35,8 +35,8 @@ const csp = [
   "frame-ancestors 'none'",
   "form-action 'self'",
   // TODO: remove `https://maladaja-hramada.vercel.app` when the production domain covers all origins.
-  "img-src 'self' data: blob: https://lh3.googleusercontent.com https://img.buymeacoffee.com https://maladaja-hramada.vercel.app",
-  "media-src 'self'",
+  "img-src 'self' data: blob: https://lh3.googleusercontent.com https://img.buymeacoffee.com https://maladaja-hramada.vercel.app https://www.mhramada.org https://mhramada.org",
+  "media-src 'self' data: blob: https://maladaja-hramada.vercel.app https://www.mhramada.org https://mhramada.org",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
   // Inline + eval allowed:
@@ -121,7 +121,38 @@ const nextConfig: NextConfig = {
         // path-level filter at all, so we allow the whole hostname. See
         // `SECURITY.md` for the threat-model discussion.
       },
+      {
+        protocol: "https",
+        hostname: "maladaja-hramada.vercel.app",
+      },
+      {
+        protocol: "https",
+        hostname: "www.mhramada.org",
+      },
+      {
+        protocol: "https",
+        hostname: "mhramada.org",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+      {
+        protocol: "http",
+        hostname: "127.0.0.1",
+      },
     ],
+  },
+  async rewrites() {
+    if (process.env.NODE_ENV === "development") {
+      return [
+        {
+          source: "/media/:path*",
+          destination: "https://maladaja-hramada.vercel.app/media/:path*",
+        },
+      ];
+    }
+    return [];
   },
   async headers() {
     return [

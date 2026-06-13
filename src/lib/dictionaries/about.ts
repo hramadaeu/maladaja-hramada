@@ -70,6 +70,13 @@ export const aboutCopy = {
     en: "Our Partners",
     pl: "Nasi partnerzy",
   } satisfies Record<Locale, string>,
+
+  historyTitle: {
+    ru: "Наша история",
+    be: "Наша гісторыя",
+    en: "Our History",
+    pl: "Nasza historia",
+  } satisfies Record<Locale, string>,
 } as const;
 
 export const aboutValues = [
@@ -134,3 +141,87 @@ export const aboutValues = [
     } satisfies Record<Locale, string>,
   },
 ] as const;
+
+export const aboutMilestones = [
+  {
+    key: "founded",
+    date: "1994",
+    title: {
+      ru: "Основание",
+      be: "Заснаванне",
+      en: "Foundation",
+      pl: "Założenie",
+    } satisfies Record<Locale, string>,
+    description: {
+      ru: "Молодёжное социал-демократическое объединение «Маладая Грамада» образовано по инициативе партии БСДГ (Беларуская Сацыял-дэмакратычная Грамада).",
+      be: "Маладзёжнае сацыял-дэмакратычнае аб’яднанне «Маладая Грамада» ўтворана па ініцыятыве партыі БСДГ (Беларуская Сацыял-дэмакратычная Грамада).",
+      en: "The youth social-democratic movement 'Maladaja Hramada' is formed on the initiative of the BSDP (Hramada) party.",
+      pl: "Młodzieżowe stowarzyszenie socjaldemokratyczne 'Maladaja Hramada' powstaje z inicjatywy partii BSDG (Białoruska Socjaldemokratyczna Hromada).",
+    } satisfies Record<Locale, string>,
+  },
+  {
+    key: "rise",
+    date: "1996–1998",
+    title: {
+      ru: "Расцвет",
+      be: "Росквіт",
+      en: "Rise",
+      pl: "Rozkwit",
+    } satisfies Record<Locale, string>,
+    description: {
+      ru: "Официальная регистрация 14 июня 1996 года. Организация становится одной из самых влиятельных молодёжных организаций Беларуси, соосновывает Раду молодёжных организаций, участвует в протестах против авторитарного референдума 1996 года.",
+      be: "Афіцыйная рэгістрацыя 14 чэрвеня 1996 года. Арганізацыя становіцца адной з самых уплывовых моладзевых арганізацый Беларусі, сузасноўвае Раду моладзевых арганізацый, удзельнічае ў пратэстах супраць аўтарытарнага рэферэндуму 1996 года.",
+      en: "Officially registered on 14 June 1996. The organisation becomes one of the most influential youth organisations in Belarus, co-founds the Council of Youth Organisations, and takes part in protests against the 1996 authoritarian referendum.",
+      pl: "Oficjalna rejestracja 14 czerwca 1996 roku. Organizacja staje się jedną z najbardziej wpływowych organizacji młodzieżowych na Białorusi, współzakłada Radę Organizacji Młodzieżowych i bierze udział w protestach przeciwko autorytarnemu referendum z 1996 roku.",
+    } satisfies Record<Locale, string>,
+  },
+  {
+    key: "split",
+    date: "1999–2004",
+    title: {
+      ru: "Раскол и ликвидация",
+      be: "Раскол і ліквідацыя",
+      en: "Split & Liquidation",
+      pl: "Rozłam i likwidacja",
+    } satisfies Record<Locale, string>,
+    description: {
+      ru: "Внутренний конфликт раскалывает движение. Из части членов создаётся «Маладыя сацыял-дэмакраты». В 2004 году Верховный Суд ликвидирует «Маладую Грамаду» по иску Министерства юстиции.",
+      be: "Унутраны канфлікт расколвае рух. З часткі членаў ствараецца «Маладыя сацыял-дэмакраты». У 2004 годзе Вярхоўны Суд ліквідуе «Маладую Грамаду» па іску Міністэрства юстыцыі.",
+      en: "Internal conflict splits the movement. Some members form 'Maladyja Sacyjal-Demakraty' (MSD). In 2004 the Supreme Court liquidates 'Maladaja Hramada' at the suit of the Ministry of Justice.",
+      pl: "Konflikt wewnętrzny rozbija ruch. Część członków tworzy 'Maladyja Sacyjal-Demakraty' (MSD). W 2004 roku Sąd Najwyższy likwiduje 'Maladaja Hramada' na wniosek Ministerstwa Sprawiedliwości.",
+    } satisfies Record<Locale, string>,
+  },
+  {
+    key: "reunification",
+    date: "2005",
+    title: {
+      ru: "Воссоединение",
+      be: "Уз'яднанне",
+      en: "Reunification",
+      pl: "Zjednoczenie",
+    } satisfies Record<Locale, string>,
+    description: {
+      ru: "МСД и МГ проводят объединительный съезд 3 июля 2005 года. Приняты новый Устав, Программа и символика — роза с контурами Беларуси. Создана единая организация «МСД-МГ».",
+      be: "МСД і МГ праводзяць аб'яднаўчы з'езд 3 ліпеня 2005 года. Прыняты новы Статут, Праграма і сімволіка — ружа з контурамі Беларусі. Створана адзіная арганізацыя «МСД-МГ».",
+      en: "MSD and MH hold a unification congress on 3 July 2005. A new Statute, Program, and symbolism — a rose with the contours of Belarus — are adopted. The unified organisation 'MSD-MH' is formed.",
+      pl: "MSD i MH przeprowadzają zjazd jednoczący 3 lipca 2005 roku. Przyjmują nowy Statut, Program i symbolikę — różę z konturami Białorusi. Powstaje zjednoczona organizacja 'MSD-MH'.",
+    } satisfies Record<Locale, string>,
+  },
+  {
+    key: "repression",
+    date: "2025",
+    title: {
+      ru: "Репрессии",
+      be: "Рэпрэсіі",
+      en: "Repression",
+      pl: "Represje",
+    } satisfies Record<Locale, string>,
+    description: {
+      ru: "Страницы организации в социальных сетях внесены в Республиканский список экстремистских материалов белорусскими властями.",
+      be: "Старонкі арганізацыі ў сацыяльных сетках унесены ў Рэспубліканскі спіс экстрэмісцкіх матэрыялаў беларускімі ўладамі.",
+      en: "The organisation's social media pages are added to the Republican List of Extremist Materials by Belarusian authorities.",
+      pl: "Strony organizacji w mediach społecznościowych zostają wpisane przez białoruskie władze na Republikową Listę Materiałów Ekstremistycznych.",
+    } satisfies Record<Locale, string>,
+  },
+] as const;
+

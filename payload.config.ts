@@ -54,7 +54,11 @@ if (
  * Trusted origins for CORS and CSRF protection. The admin panel and the
  * REST/GraphQL APIs only accept requests from these origins.
  */
-const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
+const siteUrl =
+  process.env.SITE_URL ??
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000");
 const trustedOrigins = Array.from(
   new Set([
     siteUrl,
@@ -74,6 +78,10 @@ const trustedOrigins = Array.from(
 );
 
 export default buildConfig({
+  serverURL:
+    process.env.NODE_ENV === "production" && siteUrl.startsWith("https://")
+      ? siteUrl
+      : undefined,
   admin: {
     user: Users.slug,
     importMap: {
